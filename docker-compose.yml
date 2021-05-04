@@ -1,0 +1,38 @@
+
+
+services:
+  database:
+    image: mysql:8.0.21
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mlgv_db
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER=mlgv
+      - MYSQL_ROOT_PASSWORD=mlgvadmin
+      - MYSQL_PASSWORD=mlgvadmin
+      - MYSQL_DATABASE=mlgv_quest
+    volumes:
+      - mysqldata:/data/mysql
+
+
+  app:
+    build: .
+    container_name: mlgv_app
+    restart: always
+    ports:
+      - 3333:3333
+      - 9229:9229
+    volumes:
+      - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+
+
+
+volumes:
+  mysqldata:
+    driver: local
