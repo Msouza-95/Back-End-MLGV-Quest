@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import AuthenticateUserController from '../controllers/AuthenticateUserController';
+
 const usersRouter = Router();
 
 usersRouter.get('/', (request, response) => {
