@@ -1,3 +1,4 @@
+import ICreateUserDTO from '../dtos/ICreateUserDTO';
 import Auth from '../infra/typeorm/entities/Auth';
 
 export default interface IAuthRepository {

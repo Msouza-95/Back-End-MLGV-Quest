@@ -14,7 +14,7 @@ interface IRequest {
 
 interface IResponse {
   user: {
-    type: Enumerator;
+    type: string;
     email: string;
   };
   token: string;
@@ -30,6 +30,7 @@ class AuthenticateUserService {
   ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
+    console.log('service auth');
     // usuario existe
     const user = await this.userRepository.findByEmail(email);
 
@@ -47,11 +48,15 @@ class AuthenticateUserService {
 
     // comparar senha
 
-    const passwordMatch = await compare(password, auth.password);
+    if (password !== auth.password) {
+      throw new AppError('Email or password incorrect');
+    }
+
+    /* const passwordMatch = await compare(password, auth.password);
 
     if (!passwordMatch) {
       throw new AppError('Email or password incorrect');
-    }
+    } */
     // senha está correnta gerar jsonwebtoken
 
     const token = sign({}, '672debc79110f15043d105e0a341df11', {

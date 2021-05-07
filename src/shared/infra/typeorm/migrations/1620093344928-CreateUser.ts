@@ -21,8 +21,7 @@ export class CreateUser1620093344928 implements MigrationInterface {
           },
           {
             name: 'type',
-            type: 'enum',
-            enum: ['manager', 'participant'],
+            type: 'varchar',
           },
         ],
       }),

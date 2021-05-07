@@ -1,18 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('user')
-class User {
+@Entity('period')
+class Period {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  email: string;
+  name: string;
 
   @Column()
-  enrollment: string;
+  started_at: Date;
 
   @Column()
-  type: string;
+  ended_at: Date;
 }
 
-export default User;
+export default Period;

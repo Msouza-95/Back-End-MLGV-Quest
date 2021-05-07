@@ -5,5 +5,6 @@ import AuthenticateUserController from '../controllers/AuthenticateUserControlle
 const authenticateRoutes = Router();
 const authenticateUserController = new AuthenticateUserController();
 
-authenticateRoutes.post('/', authenticateUserController.handle);
+authenticateRoutes.post('/', authenticateUserController.create);
+
 export default authenticateRoutes;

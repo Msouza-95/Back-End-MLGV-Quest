@@ -3,8 +3,12 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 class AuthenticateUserController {
-  async handle(resquest: Request, response: Response): Promise<Response> {
+  public async create(
+    resquest: Request,
+    response: Response,
+  ): Promise<Response> {
     const { password, email } = resquest.body;
+    console.log('controle authuser');
 
     const authenticateUserService = container.resolve(AuthenticateUserService);
 
@@ -13,7 +17,7 @@ class AuthenticateUserController {
       email,
     });
 
-    return response.json(authenticateToken);
+    return response.json({ authenticateToken });
   }
 }
 
