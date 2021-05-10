@@ -11,10 +11,13 @@ export class CreateExamQuestionGroup1620140842061
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'position',
             type: 'integer',
+            isNullable: true,
           },
           {
             name: 'exam_id',

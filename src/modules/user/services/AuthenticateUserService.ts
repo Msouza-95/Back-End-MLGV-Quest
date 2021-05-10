@@ -30,9 +30,9 @@ class AuthenticateUserService {
   ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
-    console.log('service auth');
     // usuario existe
     const user = await this.userRepository.findByEmail(email);
+    console.log('service auth');
 
     if (!user) {
       throw new AppError('Email or password incorrect');

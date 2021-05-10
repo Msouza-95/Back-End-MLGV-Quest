@@ -15,11 +15,14 @@ export enum statusEnum {
 
 @Entity('exam')
 class Exam {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
   description: string;
+
+  @Column()
+  title: string;
 
   @Column()
   started_at: Date;
@@ -28,7 +31,7 @@ class Exam {
   ended_at: Date;
 
   @Column()
-  llow_anonymous: boolean;
+  allow_anonymous: number;
 
   @Column({ type: 'enum', enum: statusEnum, default: statusEnum.active })
   status: statusEnum;

@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
-import Exam from '../infra/typeorm/entities/Exam';
+import Exam, { statusEnum } from '../infra/typeorm/entities/Exam';
 import IExamRepository from '../repositories/IExamRepository';
 
 interface IRequest {
@@ -8,7 +8,7 @@ interface IRequest {
   description: string;
   started_at: Date;
   ended_at: Date;
-  allow_anonymous: boolean;
+  allow_anonymous: number;
   period_id: number;
 }
 @injectable()
@@ -25,6 +25,7 @@ class CreateExamService {
     allow_anonymous,
     period_id,
   }: IRequest): Promise<Exam> {
+    console.log(title);
     const createExam = await this.examRepository.create({
       title,
       description,

@@ -1,6 +1,7 @@
-import AuthenticateUserService from '@modules/user/services/AuthenticateUserService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import AuthenticateUserService from '@modules/user/services/AuthenticateUserService';
 
 class AuthenticateUserController {
   public async create(
@@ -8,7 +9,6 @@ class AuthenticateUserController {
     response: Response,
   ): Promise<Response> {
     const { password, email } = resquest.body;
-    console.log('controle authuser');
 
     const authenticateUserService = container.resolve(AuthenticateUserService);
 
@@ -16,7 +16,7 @@ class AuthenticateUserController {
       password,
       email,
     });
-
+    console.log('controle authuser');
     return response.json({ authenticateToken });
   }
 }

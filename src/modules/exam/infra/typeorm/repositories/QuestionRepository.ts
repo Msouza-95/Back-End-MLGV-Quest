@@ -1,6 +1,7 @@
+import { Repository } from 'typeorm';
+
 import ICreateQuestion from '@modules/exam/dtos/ICreateQuestion';
 import IQuestionRepository from '@modules/exam/repositories/IQuestionRepository';
-import { Repository } from 'typeorm';
 
 import Question from '../entities/Question';
 
@@ -9,6 +10,7 @@ class QuestionRepository implements IQuestionRepository {
 
   public async create(data: ICreateQuestion): Promise<Question> {
     const newQuestion = this.ormRepository.create(data);
+    console.log(newQuestion);
 
     await this.ormRepository.save(newQuestion);
 

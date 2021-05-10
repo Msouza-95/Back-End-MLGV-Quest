@@ -17,6 +17,7 @@ class CreateQuestionService {
     @inject('QuestionRepository')
     private questionRepository: IQuestionRepository,
   ) {}
+
   public async execute({
     statement,
     image_ur,

@@ -1,3 +1,5 @@
+import { container } from 'tsyringe';
+
 import ExamRepository from '@modules/exam/infra/typeorm/repositories/ExamRepository';
 import QuestionGroupRepository from '@modules/exam/infra/typeorm/repositories/QuestionGroupRepository';
 import QuestionRepository from '@modules/exam/infra/typeorm/repositories/QuestionRepository';
@@ -8,11 +10,10 @@ import AuthRepository from '@modules/user/infra/typeorm/repositories/AuthReposit
 import UserRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IAuthRepository from '@modules/user/repositories/IAuthRepository';
 import IUserRepository from '@modules/user/repositories/IUserRepository';
-import { container } from 'tsyringe';
 
-container.registerSingleton<IAuthRepository>('UserRepository', AuthRepository);
+container.registerSingleton<IAuthRepository>('AuthRepository', AuthRepository);
 
-container.registerSingleton<IUserRepository>('AuthRepository', UserRepository);
+container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 
 container.registerSingleton<IExamRepository>('ExamRepository', ExamRepository);
 

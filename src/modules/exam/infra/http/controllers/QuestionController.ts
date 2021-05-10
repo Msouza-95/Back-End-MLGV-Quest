@@ -1,6 +1,7 @@
-import CreateQuestionService from '@modules/exam/services/CreateQuestionService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import CreateQuestionService from '@modules/exam/services/CreateQuestionService';
 
 class QuestionController {
   public async create(request: Request, response: Response): Promise<Response> {

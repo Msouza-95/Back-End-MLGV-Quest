@@ -10,6 +10,8 @@ export class CreateSubject1620134071068 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'code',

@@ -1,8 +1,8 @@
 import 'reflect-metadata';
+import 'express-async-errors';
 import 'dotenv/config';
 import '@shared/infra/typeorm';
 import '@shared/container';
-import 'express-async-errors';
 
 import express, { NextFunction, Request, Response } from 'express';
 
@@ -23,6 +23,8 @@ app.use(
       type: 'error',
       message: 'Internal Server Error! ',
       error: error.message,
+      name: error.name,
+      stack: error.stack,
     });
   },
 );

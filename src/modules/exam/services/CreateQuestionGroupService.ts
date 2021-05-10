@@ -5,7 +5,7 @@ import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
 interface IRequest {
   title: string;
-  _class: boolean;
+  classs: boolean;
 }
 
 @injectable()
@@ -14,10 +14,10 @@ class CreateQuestionGroupService {
     @inject('QuestionGroupRepository')
     private questionGroupRepository: IQuestionGroupRepository,
   ) {}
-  public async execute({ title, _class }: IRequest): Promise<QuestionGroup> {
+  public async execute({ title, classs }: IRequest): Promise<QuestionGroup> {
     const newQuestionGroup = await this.questionGroupRepository.create({
       title,
-      _class,
+      classs,
     });
 
     return newQuestionGroup;

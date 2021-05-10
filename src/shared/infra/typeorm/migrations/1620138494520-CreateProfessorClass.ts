@@ -10,6 +10,8 @@ export class CreateProfessorClass1620138494520 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'professor_id',

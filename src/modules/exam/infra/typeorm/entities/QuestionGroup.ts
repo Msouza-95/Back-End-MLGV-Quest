@@ -10,8 +10,8 @@ class QuestionGroup {
   @Column()
   title: string;
 
-  @Column('class')
-  _class: boolean;
+  @Column({ name: 'class' })
+  classs: boolean;
 
   @OneToMany(
     () => ExamQuestionGroup,

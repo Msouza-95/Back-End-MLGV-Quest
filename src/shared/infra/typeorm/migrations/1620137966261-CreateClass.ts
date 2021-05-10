@@ -10,6 +10,8 @@ export class CreateClass1620137966261 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'subject_id',

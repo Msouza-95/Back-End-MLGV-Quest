@@ -10,6 +10,8 @@ export class CreateCourse1620134030346 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'code',

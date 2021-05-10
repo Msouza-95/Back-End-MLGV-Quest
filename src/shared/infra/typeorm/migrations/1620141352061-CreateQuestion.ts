@@ -10,6 +10,8 @@ export class CreateQuestion1620141352061 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'statement',
@@ -18,10 +20,12 @@ export class CreateQuestion1620141352061 implements MigrationInterface {
           {
             name: 'image_url',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'image_alt',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'required',

@@ -1,6 +1,7 @@
+import { getRepository, Repository } from 'typeorm';
+
 import ICreateExam from '@modules/exam/dtos/ICreateExam';
 import IExamRepository from '@modules/exam/repositories/IExamRepository';
-import { getRepository, Repository } from 'typeorm';
 
 import Exam from '../entities/Exam';
 

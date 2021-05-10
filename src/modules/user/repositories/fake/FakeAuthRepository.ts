@@ -9,6 +9,9 @@ class FakeAuthRepository implements IAuthRepository {
 
     return findAuth;
   }
+  public async create(user_id: number, password: string): Promise<Auth> {
+    throw new Error('Method not implemented.');
+  }
 }
 
 export default FakeAuthRepository;

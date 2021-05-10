@@ -10,6 +10,8 @@ export class CreateQuestionGroup1620139577041 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'title',

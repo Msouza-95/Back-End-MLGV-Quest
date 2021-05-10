@@ -16,7 +16,7 @@ describe('CreateExam', () => {
       description: 'DESCRIÇÃO ',
       started_at: new Date(),
       ended_at: new Date(),
-      allow_anonymous: true,
+      allow_anonymous: 1,
       period_id: 1,
     });
 

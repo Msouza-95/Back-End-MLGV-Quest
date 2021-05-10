@@ -1,6 +1,7 @@
-import CreateExamService from '@modules/exam/services/CreateExamService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import CreateExamService from '@modules/exam/services/CreateExamService';
 
 class ExamController {
   public async create(request: Request, response: Response): Promise<Response> {

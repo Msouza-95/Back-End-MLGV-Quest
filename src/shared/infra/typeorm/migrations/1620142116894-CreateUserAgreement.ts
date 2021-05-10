@@ -10,6 +10,8 @@ export class CreateUserAgreement1620142116894 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'uuid',

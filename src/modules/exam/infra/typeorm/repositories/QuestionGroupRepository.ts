@@ -1,6 +1,7 @@
+import { Repository } from 'typeorm';
+
 import ICreateQuestionGroup from '@modules/exam/dtos/ICreateQuestionGroup';
 import IQuestionGroupRepository from '@modules/exam/repositories/IQuestionGroupRepository';
-import { Repository } from 'typeorm';
 
 import QuestionGroup from '../entities/QuestionGroup';
 

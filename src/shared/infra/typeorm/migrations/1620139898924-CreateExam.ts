@@ -10,10 +10,13 @@ export class CreateExam1620139898924 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'title',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'description', // objetivo
@@ -39,6 +42,7 @@ export class CreateExam1620139898924 implements MigrationInterface {
           {
             name: 'url',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'period_id',

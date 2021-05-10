@@ -10,6 +10,8 @@ export class CreateUserAnswerClass1620143687615 implements MigrationInterface {
             name: 'id',
             type: 'integer',
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'score',
