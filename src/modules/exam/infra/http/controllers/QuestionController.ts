@@ -7,7 +7,7 @@ class QuestionController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
       statement,
-      image_ur,
+      image_url,
       image_alt,
       required,
       exam_question_group_id,
@@ -17,7 +17,7 @@ class QuestionController {
 
     const question = await createQuestionService.execute({
       statement,
-      image_ur,
+      image_url,
       image_alt,
       required,
       exam_question_group_id,

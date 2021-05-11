@@ -15,7 +15,7 @@ describe('CreateQuenstionGroup', () => {
   it(' should be albe to create a new Exam', async () => {
     const newQuestionGroup = await createQuestionGroupService.execute({
       title: 'title exemple',
-      classs: true,
+      classs: 1,
     });
 
     expect(newQuestionGroup).toHaveProperty('id');

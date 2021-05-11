@@ -13,7 +13,7 @@ describe('CreateQuestion', () => {
   it(' should be albe to create a new Question', async () => {
     const newQuestion = await createQuestionService.execute({
       statement: 'statement test',
-      image_ur: 'url 1',
+      image_url: 'url 1',
       image_alt: 'url 2',
       required: true,
       exam_question_group_id: 1,

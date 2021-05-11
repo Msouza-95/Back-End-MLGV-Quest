@@ -11,7 +11,7 @@ class QuestionGroup {
   title: string;
 
   @Column({ name: 'class' })
-  classs: boolean;
+  classs: number;
 
   @OneToMany(
     () => ExamQuestionGroup,

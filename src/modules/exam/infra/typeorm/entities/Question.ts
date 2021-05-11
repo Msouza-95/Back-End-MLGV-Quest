@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -19,7 +20,7 @@ class Question {
   statement: string;
 
   @Column()
-  image_ur: string;
+  image_url: string;
 
   @Column()
   image_alt: string;
@@ -35,6 +36,7 @@ class Question {
     () => ExamQuestionGroup,
     examQuestionGroup => examQuestionGroup.questions,
   )
+  @JoinColumn({ name: 'exam_question_group_id' })
   examQuestionGroup: ExamQuestionGroup;
 }
 

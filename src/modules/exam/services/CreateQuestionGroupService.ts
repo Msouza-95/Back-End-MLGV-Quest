@@ -5,7 +5,7 @@ import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
 interface IRequest {
   title: string;
-  classs: boolean;
+  classs: number;
 }
 
 @injectable()
