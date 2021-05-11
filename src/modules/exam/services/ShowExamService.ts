@@ -11,7 +11,17 @@ class ShowExamService {
     @inject('ExamRepository')
     private examRepository: IExamRepository,
   ) {}
-  public async execute(): Promise<Exam[]> {
+  public async execute(id?: number): Promise<Exam[] | Exam> {
+    // retorna um exam
+    if (id) {
+      const exam = await this.examRepository.findById(id);
+      if (exam) {
+        return exam;
+      }
+      throw new AppError('exam not exists');
+    }
+
+    // retorna all exams
     const exams = await this.examRepository.index();
 
     return exams;

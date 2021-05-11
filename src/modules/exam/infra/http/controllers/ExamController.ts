@@ -2,7 +2,7 @@ import { request, Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateExamService from '@modules/exam/services/CreateExamService';
-import DeleteExamService from '@modules/exam/services/DeleteExamService';
+import KeepExamService from '@modules/exam/services/KeepExamService';
 import ShowExamService from '@modules/exam/services/ShowExamService';
 
 class ExamController {
@@ -40,12 +40,49 @@ class ExamController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+    const operation = 'DELETE';
 
-    const deleteExamService = container.resolve(DeleteExamService);
+    const keepExamService = container.resolve(KeepExamService);
 
-    const result = await deleteExamService.execute(Number(id));
+    const result = await keepExamService.execute(Number(id), { operation });
 
-    return response.status(201).json(result);
+    return response.status(200).json(result);
+  }
+
+  public async read(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const showExamService = container.resolve(ShowExamService);
+
+    const exam = await showExamService.execute(Number(id));
+
+    return response.status(201).json(exam);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const {
+      title,
+      description,
+      started_at,
+      ended_at,
+      allow_anonymous,
+    } = request.body;
+
+    const operation = 'UPDATE';
+
+    const keepExamService = container.resolve(KeepExamService);
+
+    const result = await keepExamService.execute(Number(id), {
+      operation,
+      title,
+      description,
+      started_at,
+      ended_at,
+      allow_anonymous,
+    });
+
+    return response.status(200).json(result);
   }
 }
 

@@ -1,6 +1,7 @@
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 import ICreateExam from '@modules/exam/dtos/ICreateExam';
+import IUpdateExam from '@modules/exam/dtos/IUpdateExam';
 import Exam from '@modules/exam/infra/typeorm/entities/Exam';
 
 import IExamRepository from '../IExamRepository';
@@ -39,6 +40,10 @@ class FakeExamRepository implements IExamRepository {
     const deletes = new DeleteResult();
 
     return deletes;
+  }
+
+  public async update(id: number, data: IUpdateExam): Promise<UpdateResult> {
+    throw new Error('Method not implemented de update exam');
   }
 }
 

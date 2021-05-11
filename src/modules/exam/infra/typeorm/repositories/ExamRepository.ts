@@ -1,6 +1,7 @@
-import { DeleteResult, getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository, UpdateResult } from 'typeorm';
 
 import ICreateExam from '@modules/exam/dtos/ICreateExam';
+import IUpdateExam from '@modules/exam/dtos/IUpdateExam';
 import IExamRepository from '@modules/exam/repositories/IExamRepository';
 
 import Exam from '../entities/Exam';
@@ -39,6 +40,12 @@ class ExamRepository implements IExamRepository {
   public async delete(id: number): Promise<DeleteResult> {
     const deleteResult = await this.ormRepository.delete(id);
     return deleteResult;
+  }
+
+  public async update(id: number, data: IUpdateExam): Promise<UpdateResult> {
+    const examUpdate = await this.ormRepository.update(id, data);
+
+    return examUpdate;
   }
 }
 
