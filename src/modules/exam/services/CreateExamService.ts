@@ -1,5 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
+import AppError from '@shared/errors/AppError';
+
 import Exam from '../infra/typeorm/entities/Exam';
 import IExamRepository from '../repositories/IExamRepository';
 
@@ -25,6 +27,12 @@ class CreateExamService {
     allow_anonymous,
     period_id,
   }: IRequest): Promise<Exam> {
+    const findExam = await this.examRepository.findByTitle(title);
+
+    if (findExam) {
+      throw new AppError('Name Exam exists');
+    }
+
     const createExam = await this.examRepository.create({
       title,
       description,

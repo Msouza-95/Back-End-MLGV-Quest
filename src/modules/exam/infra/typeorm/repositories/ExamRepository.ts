@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository } from 'typeorm';
 
 import ICreateExam from '@modules/exam/dtos/ICreateExam';
 import IExamRepository from '@modules/exam/repositories/IExamRepository';
@@ -12,6 +12,12 @@ class ExamRepository implements IExamRepository {
     this.ormRepository = getRepository(Exam);
   }
 
+  public async index(): Promise<Exam[]> {
+    const exams = await this.ormRepository.find();
+
+    return exams;
+  }
+
   public async create(data: ICreateExam): Promise<Exam> {
     const createExam = this.ormRepository.create(data);
 
@@ -23,6 +29,16 @@ class ExamRepository implements IExamRepository {
   findById(id: number): Promise<Exam | undefined> {
     const findExam = this.ormRepository.findOne({ where: { id } });
     return findExam;
+  }
+
+  findByTitle(title: string): Promise<Exam | undefined> {
+    const findExam = this.ormRepository.findOne({ where: { title } });
+    return findExam;
+  }
+
+  public async delete(id: number): Promise<DeleteResult> {
+    const deleteResult = await this.ormRepository.delete(id);
+    return deleteResult;
   }
 }
 
