@@ -19,7 +19,6 @@ class UserController {
       type,
     });
 
-    console.log('controle user');
     return response.json({ UserService });
   }
 }

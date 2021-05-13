@@ -24,6 +24,15 @@ class QuestionRepository implements IQuestionRepository {
 
     return findQuest;
   }
+  public async findByExamGroupID(
+    exam_question_group_id: number,
+  ): Promise<Question[]> {
+    const findQuest = await this.ormRepository.find({
+      where: { exam_question_group_id },
+    });
+
+    return findQuest;
+  }
 }
 
 export default QuestionRepository;

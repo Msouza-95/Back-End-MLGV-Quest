@@ -17,9 +17,19 @@ class FakeQuestionRepository implements IQuestionRepository {
     return newQuestion;
   }
   public async findById(id: number): Promise<Question | undefined> {
-    const findQuesntionGroup = this.questions.find(quest => quest.id === id);
+    const findQuesntion = this.questions.find(quest => quest.id === id);
 
-    return findQuesntionGroup;
+    return findQuesntion;
+  }
+
+  public async findByExamGroupID(
+    exam_question_group_id: number,
+  ): Promise<Question[]> {
+    const findQuesntion = this.questions.filter(
+      question => question.exam_question_group_id === exam_question_group_id,
+    );
+
+    return findQuesntion;
   }
 }
 

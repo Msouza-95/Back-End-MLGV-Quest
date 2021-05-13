@@ -26,6 +26,14 @@ class QuestionGroupRepository implements IQuestionGroupRepository {
 
     return findQuestionGroup;
   }
+
+  public async findTitle(title: string): Promise<QuestionGroup | undefined> {
+    const findQuestionGroup = await this.ormRepository.findOne({
+      where: { title },
+    });
+
+    return findQuestionGroup;
+  }
 }
 
 export default QuestionGroupRepository;

@@ -16,7 +16,7 @@ class AuthenticateUserController {
       password,
       email,
     });
-    console.log('controle authuser');
+
     return response.json({ authenticateToken });
   }
 }

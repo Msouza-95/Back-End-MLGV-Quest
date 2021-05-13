@@ -23,6 +23,14 @@ class FakeQuestionGroupRepository implements IQuestionGroupRepository {
 
     return findQuesntionGroup;
   }
+
+  public async findTitle(title: string): Promise<QuestionGroup | undefined> {
+    const findQuesntionGroup = this.questionGroups.find(
+      quest => quest.title === title,
+    );
+
+    return findQuesntionGroup;
+  }
 }
 
 export default FakeQuestionGroupRepository;

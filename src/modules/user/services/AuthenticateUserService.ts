@@ -2,6 +2,7 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
+import auths from '@config/auths';
 import AppError from '@shared/errors/AppError';
 
 import IAuthRepository from '../repositories/IAuthRepository';
@@ -32,7 +33,6 @@ class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     // usuario existe
     const user = await this.userRepository.findByEmail(email);
-    console.log('service auth');
 
     if (!user) {
       throw new AppError('Email or password incorrect');
@@ -52,16 +52,18 @@ class AuthenticateUserService {
       throw new AppError('Email or password incorrect');
     }
 
-    /* const passwordMatch = await compare(password, auth.password);
+    // const passwordMatch = await compare(password, auth.password);
 
-    if (!passwordMatch) {
-      throw new AppError('Email or password incorrect');
-    } */
+    // if (!passwordMatch) {
+    //   throw new AppError('Email or password incorrect');
+    // }
     // senha está correnta gerar jsonwebtoken
 
-    const token = sign({}, '672debc79110f15043d105e0a341df11', {
+    const { secret, expiresIn } = auths.jwt;
+
+    const token = sign({}, secret, {
       subject: String(user.id),
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return {
