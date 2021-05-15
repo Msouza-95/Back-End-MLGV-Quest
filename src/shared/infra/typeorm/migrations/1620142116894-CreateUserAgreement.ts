@@ -16,6 +16,7 @@ export class CreateUserAgreement1620142116894 implements MigrationInterface {
           {
             name: 'uuid',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'created_at',

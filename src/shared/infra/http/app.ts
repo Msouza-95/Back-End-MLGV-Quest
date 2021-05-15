@@ -23,8 +23,6 @@ app.use(
       type: 'error',
       message: 'Internal Server Error! ',
       error: error.message,
-      name: error.name,
-      stack: error.stack,
     });
   },
 );

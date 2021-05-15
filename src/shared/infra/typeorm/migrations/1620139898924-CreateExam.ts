@@ -47,6 +47,7 @@ export class CreateExam1620139898924 implements MigrationInterface {
           {
             name: 'period_id',
             type: 'integer',
+            isNullable: true,
           },
         ],
         foreignKeys: [

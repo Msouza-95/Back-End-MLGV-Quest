@@ -20,6 +20,7 @@ export class CreateQuestionGroup1620139577041 implements MigrationInterface {
           {
             name: 'class',
             type: 'bool',
+            isNullable: true,
           },
         ],
       }),

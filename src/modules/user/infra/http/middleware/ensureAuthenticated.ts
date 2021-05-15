@@ -4,13 +4,11 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auths';
 import AppError from '@shared/errors/AppError';
 
-import UserRepository from '../../typeorm/repositories/UserRepository';
-
 interface IPayload {
   sub: string;
 }
 
-export async function ensureAuthenticated(
+export default function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction,
@@ -24,9 +22,6 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(' ');
   try {
     const { sub: user_id } = verify(token, authConfig.jwt.secret) as IPayload;
-
-    // const userRepository = new UserRepository();
-    // const user = await userRepository.findById(Number(user_id));
 
     request.user = {
       id: user_id,

@@ -22,9 +22,10 @@ export class CreateExamQuestionGroup1620140842061
           {
             name: 'exam_id',
             type: 'integer',
+            isNullable: true,
           },
           {
-            name: 'question_gropu_id',
+            name: 'question_group_id',
             type: 'integer',
           },
         ],
@@ -38,7 +39,7 @@ export class CreateExamQuestionGroup1620140842061
             onUpdate: 'CASCADE',
           },
           {
-            columnNames: ['question_gropu_id'],
+            columnNames: ['question_group_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'questionGroup',
             name: 'questionGroupExam',

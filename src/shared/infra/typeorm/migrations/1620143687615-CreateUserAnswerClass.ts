@@ -16,6 +16,7 @@ export class CreateUserAnswerClass1620143687615 implements MigrationInterface {
           {
             name: 'score',
             type: 'integer',
+            isNullable: true,
           },
           {
             name: 'class_id',

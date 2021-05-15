@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -32,6 +33,7 @@ class ExamQuestionGroup {
     () => QuestionGroup,
     questionGroup => questionGroup.examQuestionGroups,
   )
+  @JoinColumn({ name: 'question_group_id' })
   questionGroup: QuestionGroup;
 }
 

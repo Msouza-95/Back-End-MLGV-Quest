@@ -1,8 +1,10 @@
 import { container } from 'tsyringe';
 
+import ExamQuestionGroupRepository from '@modules/exam/infra/typeorm/repositories/ExamQuestionGroupRepository';
 import ExamRepository from '@modules/exam/infra/typeorm/repositories/ExamRepository';
 import QuestionGroupRepository from '@modules/exam/infra/typeorm/repositories/QuestionGroupRepository';
 import QuestionRepository from '@modules/exam/infra/typeorm/repositories/QuestionRepository';
+import IExamQuestionGroupRepository from '@modules/exam/repositories/IExamQuestionGroupRepository';
 import IExamRepository from '@modules/exam/repositories/IExamRepository';
 import IQuestionGroupRepository from '@modules/exam/repositories/IQuestionGroupRepository';
 import IQuestionRepository from '@modules/exam/repositories/IQuestionRepository';
@@ -25,4 +27,9 @@ container.registerSingleton<IQuestionRepository>(
 container.registerSingleton<IQuestionGroupRepository>(
   'QuestionGroupRepository',
   QuestionGroupRepository,
+);
+
+container.registerSingleton<IExamQuestionGroupRepository>(
+  'ExamQuestionGroupRepository',
+  ExamQuestionGroupRepository,
 );

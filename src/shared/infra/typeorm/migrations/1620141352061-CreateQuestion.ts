@@ -30,6 +30,7 @@ export class CreateQuestion1620141352061 implements MigrationInterface {
           {
             name: 'required',
             type: 'bool',
+            isNullable: true,
           },
           {
             name: 'exam_question_group_id',

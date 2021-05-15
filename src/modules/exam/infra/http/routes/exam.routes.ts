@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { ensureAuthenticated } from '@modules/user/infra/http/middleware/ensureAuthenticated';
+import ensureAuthenticated from '@modules/user/infra/http/middleware/ensureAuthenticated';
 
 import ExamController from '../controllers/ExamController';
 

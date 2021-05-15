@@ -11,7 +11,8 @@ class QuestionController {
       image_url,
       image_alt,
       required,
-      exam_question_group_id,
+      question_group_id,
+      exam_id,
     } = request.body;
 
     const createQuestionService = container.resolve(CreateQuestionService);
@@ -21,18 +22,22 @@ class QuestionController {
       image_url,
       image_alt,
       required,
-      exam_question_group_id,
+      question_group_id,
+      exam_id,
     });
 
     return response.status(201).json(question);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
+    const { exam_id, group_id } = request.params;
 
     const showQuestinService = container.resolve(ShowQuestionService);
 
-    const questions = await showQuestinService.execute(Number(id));
+    const questions = await showQuestinService.execute({
+      exam_id,
+      question_group_id: group_id,
+    });
 
     return response.status(200).json(questions);
   }
