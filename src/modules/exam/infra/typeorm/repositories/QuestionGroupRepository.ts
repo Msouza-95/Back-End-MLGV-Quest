@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository, UpdateResult } from 'typeorm';
 
 import ICreateQuestionGroup from '@modules/exam/dtos/ICreateQuestionGroup';
 import IQuestionGroupRepository from '@modules/exam/repositories/IQuestionGroupRepository';
@@ -33,6 +33,24 @@ class QuestionGroupRepository implements IQuestionGroupRepository {
     });
 
     return findQuestionGroup;
+  }
+
+  public async index(): Promise<QuestionGroup[]> {
+    const questionGroup = await this.ormRepository.find();
+
+    return questionGroup;
+  }
+  public async upadate(
+    id: number,
+    data: ICreateQuestionGroup,
+  ): Promise<UpdateResult> {
+    const groupUpdate = await this.ormRepository.update(id, data);
+
+    return groupUpdate;
+  }
+  public async delete(id: number): Promise<DeleteResult> {
+    const groupDelete = this.ormRepository.delete(id);
+    return groupDelete;
   }
 }
 

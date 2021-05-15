@@ -18,7 +18,7 @@ interface IRequest {
 }
 // Service responsavel por realizar as operações de delete e update
 @injectable()
-class keepExamService {
+class KeepExamService {
   constructor(
     @inject('ExamRepository')
     private examRepository: IExamRepository,
@@ -37,7 +37,7 @@ class keepExamService {
     const findExam = await this.examRepository.findById(id);
 
     if (!findExam) {
-      throw new AppError(' invalid id parameter id');
+      throw new AppError('invalid id parameter');
     }
 
     if (operation === 'DELETE') {
@@ -73,4 +73,4 @@ class keepExamService {
   }
 }
 
-export default keepExamService;
+export default KeepExamService;

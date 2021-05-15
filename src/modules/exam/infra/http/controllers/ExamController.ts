@@ -1,8 +1,8 @@
-import { request, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateExamService from '@modules/exam/services/CreateExamService';
-import KeepExamService from '@modules/exam/services/keepExamService';
+import KeepExamService from '@modules/exam/services/KeepExamService';
 import ShowExamService from '@modules/exam/services/ShowExamService';
 
 class ExamController {
