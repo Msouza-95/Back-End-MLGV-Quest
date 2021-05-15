@@ -2,7 +2,7 @@ import { request, Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateExamService from '@modules/exam/services/CreateExamService';
-import KeepExamService from '@modules/exam/services/KeepExamService';
+import KeepExamService from '@modules/exam/services/keepExamService';
 import ShowExamService from '@modules/exam/services/ShowExamService';
 
 class ExamController {

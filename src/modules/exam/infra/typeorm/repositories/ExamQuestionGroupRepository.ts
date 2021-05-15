@@ -1,7 +1,8 @@
-import { getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository, UpdateResult } from 'typeorm';
 
 import ICreateExamQuestionGroup from '@modules/exam/dtos/ICreateExamQuestionGroup';
 import IIndexQuestion from '@modules/exam/dtos/IIndexQuestion';
+import IUpdateQuestionGroup from '@modules/exam/dtos/IUpdateQuestionGroup';
 import IExamQuestionGroupRepository from '@modules/exam/repositories/IExamQuestionGroupRepository';
 
 import ExamQuestionGroup from '../entities/ExamQuestionGroup';
@@ -55,6 +56,14 @@ class ExamQuestionGroupRepository implements IExamQuestionGroupRepository {
     });
 
     return findExamQuestionGroup;
+  }
+
+  public async update(
+    id: number,
+    data: IUpdateQuestionGroup,
+  ): Promise<UpdateResult> {
+    const result = await this.ormRepository.update(id, data);
+    return result;
   }
 }
 
