@@ -4,5 +4,5 @@ export default interface ICreateExam {
   started_at: Date;
   ended_at: Date;
   allow_anonymous: number;
-  period_id: number;
+  period_id?: number;
 }

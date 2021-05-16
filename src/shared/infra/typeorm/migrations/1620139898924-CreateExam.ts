@@ -24,11 +24,11 @@ export class CreateExam1620139898924 implements MigrationInterface {
           },
           {
             name: 'started_at',
-            type: 'timestamp',
+            type: 'date',
           },
           {
             name: 'ended_at',
-            type: 'timestamp',
+            type: 'date',
           },
           {
             name: 'allow_anonymous',

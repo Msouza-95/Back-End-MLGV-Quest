@@ -20,11 +20,11 @@ export class CreatePeriod1620136986654 implements MigrationInterface {
           },
           {
             name: 'started_at',
-            type: 'timestamp',
+            type: 'date',
           },
           {
             name: 'ended_at',
-            type: 'timestamp',
+            type: 'date',
           },
         ],
       }),

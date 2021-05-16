@@ -12,6 +12,7 @@ export default interface IExamQuestionGroupRepository {
   findByQuestionGroupID(
     question_group_id: number,
   ): Promise<ExamQuestionGroup | undefined>;
+  findByExamId(exam_id: number): Promise<ExamQuestionGroup[] | undefined>;
   allEquivalente(
     data: IIndexQuestion,
   ): Promise<ExamQuestionGroup[] | undefined>;

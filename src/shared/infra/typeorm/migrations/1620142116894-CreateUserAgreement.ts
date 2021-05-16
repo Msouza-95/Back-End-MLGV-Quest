@@ -20,7 +20,7 @@ export class CreateUserAgreement1620142116894 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'timestamp',
+            type: 'date',
           },
           {
             name: 'anoymous',

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateQuestionService from '@modules/exam/services/CreateQuestionService';
+import KeepQuestionService from '@modules/exam/services/KeepQuestionService';
 import ShowQuestionService from '@modules/exam/services/ShowQuestionService';
 
 class QuestionController {
@@ -40,6 +41,34 @@ class QuestionController {
     });
 
     return response.status(200).json(questions);
+  }
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const operation = 'DELETE';
+
+    const keepQuestionService = container.resolve(KeepQuestionService);
+
+    const result = await keepQuestionService.execute(Number(id), { operation });
+
+    return response.status(200).json({ result });
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const operation = 'UPDATE';
+    const { statement, image_url, image_alt, required } = request.body;
+
+    const keepQuestionService = container.resolve(KeepQuestionService);
+
+    const result = await keepQuestionService.execute(Number(id), {
+      operation,
+      statement,
+      image_url,
+      image_alt,
+      required,
+    });
+
+    return response.status(200).json({ result });
   }
 }
 export default QuestionController;

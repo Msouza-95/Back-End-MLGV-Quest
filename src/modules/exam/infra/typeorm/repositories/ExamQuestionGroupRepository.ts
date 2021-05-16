@@ -65,6 +65,14 @@ class ExamQuestionGroupRepository implements IExamQuestionGroupRepository {
     const result = await this.ormRepository.update(id, data);
     return result;
   }
+
+  public async findByExamId(
+    exam_id: number,
+  ): Promise<ExamQuestionGroup[] | undefined> {
+    const findGroup = await this.ormRepository.find({ where: { exam_id } });
+
+    return findGroup;
+  }
 }
 
 export default ExamQuestionGroupRepository;

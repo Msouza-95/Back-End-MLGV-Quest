@@ -3,5 +3,5 @@ export default interface ICreateQuestion {
   image_url: string;
   image_alt: string;
   required: boolean;
-  exam_question_group_id: number;
+  exam_question_group_id?: number;
 }

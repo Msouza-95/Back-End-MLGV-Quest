@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { DeleteResult, getRepository, Repository, UpdateResult } from 'typeorm';
 
 import ICreateQuestion from '@modules/exam/dtos/ICreateQuestion';
 import IQuestionRepository from '@modules/exam/repositories/IQuestionRepository';
@@ -32,6 +32,20 @@ class QuestionRepository implements IQuestionRepository {
     });
 
     return findQuest;
+  }
+
+  public async delete(id: number): Promise<DeleteResult> {
+    const result = await this.ormRepository.delete(id);
+
+    return result;
+  }
+  public async upadate(
+    id: number,
+    data: ICreateQuestion,
+  ): Promise<UpdateResult> {
+    const result = await this.ormRepository.update(id, data);
+
+    return result;
   }
 }
 
