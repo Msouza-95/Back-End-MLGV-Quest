@@ -52,17 +52,34 @@ class CreateQuestionService {
       throw new AppError(' Exam id invalid');
     }
 
-    const examQuestionGroup = await this.examQuestionGroupRepository.create({
+    const id = await this.examQuestionGroupRepository.allEquivalente({
       question_group_id,
       exam_id,
     });
+
+    if (id?.length === 0) {
+      const examQuestionGroup = await this.examQuestionGroupRepository.create({
+        question_group_id,
+        exam_id,
+      });
+
+      const newQuestion = await this.questionRepository.create({
+        statement,
+        image_url,
+        image_alt,
+        required,
+        exam_question_group_id: examQuestionGroup.id,
+      });
+
+      return newQuestion;
+    }
 
     const newQuestion = await this.questionRepository.create({
       statement,
       image_url,
       image_alt,
       required,
-      exam_question_group_id: examQuestionGroup.id,
+      exam_question_group_id: id[0].id,
     });
 
     return newQuestion;
