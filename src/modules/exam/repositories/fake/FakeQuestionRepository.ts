@@ -1,9 +1,17 @@
+import { DeleteResult, UpdateResult } from 'typeorm';
+
 import ICreateQuestion from '@modules/exam/dtos/ICreateQuestion';
 import Question from '@modules/exam/infra/typeorm/entities/Question';
 
 import IQuestionRepository from '../IQuestionRepository';
 
 class FakeQuestionRepository implements IQuestionRepository {
+  delete(id: number): Promise<DeleteResult> {
+    throw new Error('Method not implemented.');
+  }
+  upadate(id: number, data: ICreateQuestion): Promise<UpdateResult> {
+    throw new Error('Method not implemented.');
+  }
   private questions: Question[] = [];
 
   public async create(data: ICreateQuestion): Promise<Question> {

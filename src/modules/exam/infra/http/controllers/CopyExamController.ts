@@ -18,7 +18,7 @@ class CopyExamContoller {
     const copyExamService = container.resolve(CopyExamService);
 
     const newExam = await copyExamService.execute({
-      id,
+      id: Number(id),
       title,
       description,
       started_at,

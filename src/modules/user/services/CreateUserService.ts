@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
+import app from '@shared/infra/http/app';
 
 import User from '../infra/typeorm/entities/User';
 import IAuthRepository from '../repositories/IAuthRepository';
@@ -43,6 +44,7 @@ class CreateUserService {
     if (newAuth) {
       return newUser;
     }
+    throw new AppError('user erro');
   }
 }
 export default CreateUserService;

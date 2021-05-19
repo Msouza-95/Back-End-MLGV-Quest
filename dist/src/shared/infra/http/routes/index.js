@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const copyExam_routes_1 = __importDefault(require("@modules/exam/infra/http/routes/copyExam.routes"));
+const exam_routes_1 = __importDefault(require("@modules/exam/infra/http/routes/exam.routes"));
+const positionQuestionGroup_routes_1 = __importDefault(require("@modules/exam/infra/http/routes/positionQuestionGroup.routes"));
+const question_routes_1 = __importDefault(require("@modules/exam/infra/http/routes/question.routes"));
+const questionGroup_routes_1 = __importDefault(require("@modules/exam/infra/http/routes/questionGroup.routes"));
+const authenticate_routes_1 = __importDefault(require("@modules/user/infra/http/routes/authenticate.routes"));
+const users_routes_1 = __importDefault(require("@modules/user/infra/http/routes/users.routes"));
+const routes = express_1.Router();
+routes.use('/users', users_routes_1.default);
+routes.use('/session', authenticate_routes_1.default);
+routes.use('/exam', exam_routes_1.default);
+routes.use('/question', question_routes_1.default);
+routes.use('/questiongroup', questionGroup_routes_1.default);
+routes.use('/positionquestiongroup', positionQuestionGroup_routes_1.default);
+routes.use('/copyexam', copyExam_routes_1.default);
+exports.default = routes;

@@ -36,8 +36,8 @@ class QuestionController {
     const showQuestinService = container.resolve(ShowQuestionService);
 
     const questions = await showQuestinService.execute({
-      exam_id,
-      question_group_id: group_id,
+      exam_id: Number(exam_id),
+      question_group_id: Number(group_id),
     });
 
     return response.status(200).json(questions);

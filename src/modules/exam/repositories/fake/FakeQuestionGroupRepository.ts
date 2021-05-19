@@ -1,9 +1,20 @@
+import { UpdateResult, DeleteResult } from 'typeorm';
+
 import ICreateQuestionGroup from '@modules/exam/dtos/ICreateQuestionGroup';
 import QuestionGroup from '@modules/exam/infra/typeorm/entities/QuestionGroup';
 
 import IQuestionGroupRepository from '../IQuestionGroupRepository';
 
 class FakeQuestionGroupRepository implements IQuestionGroupRepository {
+  index(): Promise<QuestionGroup[]> {
+    throw new Error('Method not implemented.');
+  }
+  upadate(id: number, data: ICreateQuestionGroup): Promise<UpdateResult> {
+    throw new Error('Method not implemented.');
+  }
+  delete(id: number): Promise<DeleteResult> {
+    throw new Error('Method not implemented.');
+  }
   private questionGroups: QuestionGroup[] = [];
 
   public async create(data: ICreateQuestionGroup): Promise<QuestionGroup> {

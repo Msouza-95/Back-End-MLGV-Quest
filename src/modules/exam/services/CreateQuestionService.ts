@@ -74,15 +74,18 @@ class CreateQuestionService {
       return newQuestion;
     }
 
-    const newQuestion = await this.questionRepository.create({
-      statement,
-      image_url,
-      image_alt,
-      required,
-      exam_question_group_id: id[0].id,
-    });
+    if (id) {
+      const newQuestion = await this.questionRepository.create({
+        statement,
+        image_url,
+        image_alt,
+        required,
+        exam_question_group_id: id[0].id,
+      });
+      return newQuestion;
+    }
 
-    return newQuestion;
+    throw new AppError('erro createQuestion');
   }
 }
 
