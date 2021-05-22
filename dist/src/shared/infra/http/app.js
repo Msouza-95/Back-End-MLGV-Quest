@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 require("express-async-errors");
 require("dotenv/config");
-require("@shared/infra/typeorm");
+//import '@shared/infra/typeorm';
 require("@shared/container");
 const express_1 = __importDefault(require("express"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
