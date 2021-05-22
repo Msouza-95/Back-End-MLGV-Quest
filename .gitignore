@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+.env
+TODO
+src/test
+scripts/
+yarn-error.log
+debug.log
+
+/coverage

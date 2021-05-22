@@ -1,4 +1,4 @@
-export default interface ICreateExam {
+interface ICreateExam {
   title: string;
   description: string;
   started_at: Date;
@@ -6,3 +6,5 @@ export default interface ICreateExam {
   allow_anonymous: number;
   period_id?: number;
 }
+
+export default ICreateExam;

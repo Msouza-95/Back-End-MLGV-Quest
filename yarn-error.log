@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel/preset-typescript -D
+  C:\Program Files\nodejs\node.exe C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @babel/cli @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-decorators @babel/preset-env babel-plugin-module-resolver babel-pligin-transform-typescript-metadata -D
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\MSOUZA\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27;C:\Python27\Scripts;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\OpenJDK\openjdk-8u262-b10\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\MSOUZA\AppData\Local\Microsoft\WindowsApps;C:\Users\MSOUZA\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\MSOUZA\AppData\Roaming\npm;C:\Users\MSOUZA\AppData\Local\Android\Sdk\emulator;C:\Users\MSOUZA\AppData\Local\Android\Sdk\tools;C:\Users\MSOUZA\AppData\Local\Android\Sdk\tools\bin;C:\Users\MSOUZA\AppData\Local\Android\Sdk\platform-tools
@@ -14,7 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\projetos\Back-End-MLGV-Quest\node_modules\.bin\tsnd'
+  Error: https://registry.yarnpkg.com/babel-pligin-transform-typescript-metadata: Not found
+      at Request.params.callback [as _callback] (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
+      at Request.self.callback (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1252:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -26,8 +36,8 @@ npm manifest:
     "scripts": {
       "test": "jest",
       "dev": "tsnd -r tsconfig-paths/register --transpile-only --inspect --ignore-watch node_modules src/shared/infra/http/server.ts",
-      "build": "tsc",
-      "start": "node src/shared/infra/http/server.js",
+      "build": "babel src --extensions \".js,.ts\" --out-dir dist  --copy-files",
+      "start": "node dist/src/shared/infra/http/server.js",
       "typeorm": "tsnd -r tsconfig-paths/register node_modules/typeorm/cli"
     },
     "dependencies": {
