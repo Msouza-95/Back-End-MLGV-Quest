@@ -3,7 +3,7 @@
     "target": "ES2020",
     "module": "commonjs",
     "allowJs": true,
-    "outDir": "./dist",
+    "outDir": "./dist/src",
     "strict": true,
     "strictPropertyInitialization": false,
     "baseUrl": "./src",

@@ -1,13 +1,21 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const PositionQuestionGroupController_1 = __importDefault(require("@modules/exam/infra/http/controllers/PositionQuestionGroupController"));
-const ensureAuthenticated_1 = __importDefault(require("@modules/user/infra/http/middleware/ensureAuthenticated"));
-const positonQuestionGroupRoutes = express_1.Router();
-const positonQuestionGroupController = new PositionQuestionGroupController_1.default();
-positonQuestionGroupRoutes.use(ensureAuthenticated_1.default);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _express = require("express");
+
+var _PositionQuestionGroupController = _interopRequireDefault(require("../controllers/PositionQuestionGroupController"));
+
+var _ensureAuthenticated = _interopRequireDefault(require("../../../../user/infra/http/middleware/ensureAuthenticated"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const positonQuestionGroupRoutes = (0, _express.Router)();
+const positonQuestionGroupController = new _PositionQuestionGroupController.default();
+positonQuestionGroupRoutes.use(_ensureAuthenticated.default);
 positonQuestionGroupRoutes.post('/', positonQuestionGroupController.create);
-exports.default = positonQuestionGroupRoutes;
+var _default = positonQuestionGroupRoutes;
+exports.default = _default;

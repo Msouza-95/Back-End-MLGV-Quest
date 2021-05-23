@@ -1,14 +1,23 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const UserController_1 = __importDefault(require("../controllers/UserController"));
-const usersRouter = express_1.Router();
-const userController = new UserController_1.default();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _express = require("express");
+
+var _UserController = _interopRequireDefault(require("../controllers/UserController"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const usersRouter = (0, _express.Router)();
+const userController = new _UserController.default();
 usersRouter.get('/', (request, response) => {
-    return response.json({ message: 'Rota de users sacou' });
+  return response.json({
+    message: 'Rota de users sacou'
+  });
 });
 usersRouter.post('/', userController.create);
-exports.default = usersRouter;
+var _default = usersRouter;
+exports.default = _default;

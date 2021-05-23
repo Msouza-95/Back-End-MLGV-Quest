@@ -1,18 +1,29 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const tsyringe_1 = require("tsyringe");
-const ExamQuestionGroupRepository_1 = __importDefault(require("@modules/exam/infra/typeorm/repositories/ExamQuestionGroupRepository"));
-const ExamRepository_1 = __importDefault(require("@modules/exam/infra/typeorm/repositories/ExamRepository"));
-const QuestionGroupRepository_1 = __importDefault(require("@modules/exam/infra/typeorm/repositories/QuestionGroupRepository"));
-const QuestionRepository_1 = __importDefault(require("@modules/exam/infra/typeorm/repositories/QuestionRepository"));
-const AuthRepository_1 = __importDefault(require("@modules/user/infra/typeorm/repositories/AuthRepository"));
-const UserRepository_1 = __importDefault(require("@modules/user/infra/typeorm/repositories/UserRepository"));
-tsyringe_1.container.registerSingleton('AuthRepository', AuthRepository_1.default);
-tsyringe_1.container.registerSingleton('UserRepository', UserRepository_1.default);
-tsyringe_1.container.registerSingleton('ExamRepository', ExamRepository_1.default);
-tsyringe_1.container.registerSingleton('QuestionRepository', QuestionRepository_1.default);
-tsyringe_1.container.registerSingleton('QuestionGroupRepository', QuestionGroupRepository_1.default);
-tsyringe_1.container.registerSingleton('ExamQuestionGroupRepository', ExamQuestionGroupRepository_1.default);
+
+var _tsyringe = require("tsyringe");
+
+var _ExamQuestionGroupRepository = _interopRequireDefault(require("../../modules/exam/infra/typeorm/repositories/ExamQuestionGroupRepository"));
+
+var _ExamRepository = _interopRequireDefault(require("../../modules/exam/infra/typeorm/repositories/ExamRepository"));
+
+var _QuestionGroupRepository = _interopRequireDefault(require("../../modules/exam/infra/typeorm/repositories/QuestionGroupRepository"));
+
+var _QuestionRepository = _interopRequireDefault(require("../../modules/exam/infra/typeorm/repositories/QuestionRepository"));
+
+var _AuthRepository = _interopRequireDefault(require("../../modules/user/infra/typeorm/repositories/AuthRepository"));
+
+var _UserRepository = _interopRequireDefault(require("../../modules/user/infra/typeorm/repositories/UserRepository"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_tsyringe.container.registerSingleton('AuthRepository', _AuthRepository.default);
+
+_tsyringe.container.registerSingleton('UserRepository', _UserRepository.default);
+
+_tsyringe.container.registerSingleton('ExamRepository', _ExamRepository.default);
+
+_tsyringe.container.registerSingleton('QuestionRepository', _QuestionRepository.default);
+
+_tsyringe.container.registerSingleton('QuestionGroupRepository', _QuestionGroupRepository.default);
+
+_tsyringe.container.registerSingleton('ExamQuestionGroupRepository', _ExamQuestionGroupRepository.default);

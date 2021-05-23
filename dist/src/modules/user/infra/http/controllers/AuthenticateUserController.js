@@ -1,19 +1,35 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const tsyringe_1 = require("tsyringe");
-const AuthenticateUserService_1 = __importDefault(require("@modules/user/services/AuthenticateUserService"));
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _tsyringe = require("tsyringe");
+
+var _AuthenticateUserService = _interopRequireDefault(require("../../../services/AuthenticateUserService"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 class AuthenticateUserController {
-    async create(resquest, response) {
-        const { password, email } = resquest.body;
-        const authenticateUserService = tsyringe_1.container.resolve(AuthenticateUserService_1.default);
-        const authenticateToken = await authenticateUserService.execute({
-            password,
-            email,
-        });
-        return response.json({ authenticateToken });
-    }
+  async create(resquest, response) {
+    const {
+      password,
+      email
+    } = resquest.body;
+
+    const authenticateUserService = _tsyringe.container.resolve(_AuthenticateUserService.default);
+
+    const authenticateToken = await authenticateUserService.execute({
+      password,
+      email
+    });
+    return response.json({
+      authenticateToken
+    });
+  }
+
 }
-exports.default = AuthenticateUserController;
+
+var _default = AuthenticateUserController;
+exports.default = _default;

@@ -1,17 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const ensureAuthenticated_1 = __importDefault(require("@modules/user/infra/http/middleware/ensureAuthenticated"));
-const QuestionGroupController_1 = __importDefault(require("../controllers/QuestionGroupController"));
-const questionGroupRoutes = express_1.Router();
-const questionGroupController = new QuestionGroupController_1.default();
-questionGroupRoutes.use(ensureAuthenticated_1.default);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _express = require("express");
+
+var _ensureAuthenticated = _interopRequireDefault(require("../../../../user/infra/http/middleware/ensureAuthenticated"));
+
+var _QuestionGroupController = _interopRequireDefault(require("../controllers/QuestionGroupController"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const questionGroupRoutes = (0, _express.Router)();
+const questionGroupController = new _QuestionGroupController.default();
+questionGroupRoutes.use(_ensureAuthenticated.default);
 questionGroupRoutes.post('/', questionGroupController.create);
 questionGroupRoutes.get('/', questionGroupController.index);
 questionGroupRoutes.get('/:id', questionGroupController.read);
 questionGroupRoutes.delete('/:id', questionGroupController.delete);
 questionGroupRoutes.put('/:id', questionGroupController.update);
-exports.default = questionGroupRoutes;
+var _default = questionGroupRoutes;
+exports.default = _default;

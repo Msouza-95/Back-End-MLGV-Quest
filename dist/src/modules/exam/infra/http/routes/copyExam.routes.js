@@ -1,13 +1,21 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const ensureAuthenticated_1 = __importDefault(require("@modules/user/infra/http/middleware/ensureAuthenticated"));
-const CopyExamController_1 = __importDefault(require("../controllers/CopyExamController"));
-const copyExamRoutes = express_1.Router();
-const copyExamContoller = new CopyExamController_1.default();
-copyExamRoutes.use(ensureAuthenticated_1.default);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _express = require("express");
+
+var _ensureAuthenticated = _interopRequireDefault(require("../../../../user/infra/http/middleware/ensureAuthenticated"));
+
+var _CopyExamController = _interopRequireDefault(require("../controllers/CopyExamController"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const copyExamRoutes = (0, _express.Router)();
+const copyExamContoller = new _CopyExamController.default();
+copyExamRoutes.use(_ensureAuthenticated.default);
 copyExamRoutes.post('/:id', copyExamContoller.create);
-exports.default = copyExamRoutes;
+var _default = copyExamRoutes;
+exports.default = _default;

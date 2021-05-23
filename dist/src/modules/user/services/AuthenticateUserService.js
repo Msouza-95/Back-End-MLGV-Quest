@@ -1,64 +1,78 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsonwebtoken_1 = require("jsonwebtoken");
-const tsyringe_1 = require("tsyringe");
-const auths_1 = __importDefault(require("@config/auths"));
-const AppError_1 = __importDefault(require("@shared/errors/AppError"));
-let AuthenticateUserService = class AuthenticateUserService {
-    constructor(userRepository, authRepository) {
-        this.userRepository = userRepository;
-        this.authRepository = authRepository;
-    }
-    async execute({ email, password }) {
-        // usuario existe
-        const user = await this.userRepository.findByEmail(email);
-        if (!user) {
-            throw new AppError_1.default('Email or password incorrect');
-        }
-        // bucas senha a tabela auth
-        const auth = await this.authRepository.findByUserID(user.id);
-        if (!auth) {
-            throw new AppError_1.default('Email or password incorrect');
-        }
-        // comparar senha
-        if (password !== auth.password) {
-            throw new AppError_1.default('Email or password incorrect');
-        }
-        // const passwordMatch = await compare(password, auth.password);
-        // if (!passwordMatch) {
-        //   throw new AppError('Email or password incorrect');
-        // }
-        // senha está correnta gerar jsonwebtoken
-        const { secret, expiresIn } = auths_1.default.jwt;
-        const token = jsonwebtoken_1.sign({}, secret, {
-            subject: String(user.id),
-            expiresIn,
-        });
-        return {
-            user,
-            token,
-        };
-    }
-};
-AuthenticateUserService = __decorate([
-    tsyringe_1.injectable(),
-    __param(0, tsyringe_1.inject('UserRepository')),
-    __param(1, tsyringe_1.inject('AuthRepository')),
-    __metadata("design:paramtypes", [Object, Object])
-], AuthenticateUserService);
-exports.default = AuthenticateUserService;
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _jsonwebtoken = require("jsonwebtoken");
+
+var _tsyringe = require("tsyringe");
+
+var _auths = _interopRequireDefault(require("../../../config/auths"));
+
+var _AppError = _interopRequireDefault(require("../../../shared/errors/AppError"));
+
+var _IAuthRepository = _interopRequireDefault(require("../repositories/IAuthRepository"));
+
+var _IUserRepository = _interopRequireDefault(require("../repositories/IUserRepository"));
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _class;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+let AuthenticateUserService = (_dec = (0, _tsyringe.injectable)(), _dec2 = function (target, key) {
+  return (0, _tsyringe.inject)('UserRepository')(target, undefined, 0);
+}, _dec3 = function (target, key) {
+  return (0, _tsyringe.inject)('AuthRepository')(target, undefined, 1);
+}, _dec4 = Reflect.metadata("design:type", Function), _dec5 = Reflect.metadata("design:paramtypes", [typeof _IUserRepository.default === "undefined" ? Object : _IUserRepository.default, typeof _IAuthRepository.default === "undefined" ? Object : _IAuthRepository.default]), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = _dec5(_class = class AuthenticateUserService {
+  constructor(userRepository, authRepository) {
+    this.userRepository = userRepository;
+    this.authRepository = authRepository;
+  }
+
+  async execute({
+    email,
+    password
+  }) {
+    // usuario existe
+    const user = await this.userRepository.findByEmail(email);
+
+    if (!user) {
+      throw new _AppError.default('Email or password incorrect');
+    } // bucas senha a tabela auth
+
+
+    const auth = await this.authRepository.findByUserID(user.id);
+
+    if (!auth) {
+      throw new _AppError.default('Email or password incorrect');
+    } // comparar senha
+
+
+    if (password !== auth.password) {
+      throw new _AppError.default('Email or password incorrect');
+    } // const passwordMatch = await compare(password, auth.password);
+    // if (!passwordMatch) {
+    //   throw new AppError('Email or password incorrect');
+    // }
+    // senha está correnta gerar jsonwebtoken
+
+
+    const {
+      secret,
+      expiresIn
+    } = _auths.default.jwt;
+    const token = (0, _jsonwebtoken.sign)({}, secret, {
+      subject: String(user.id),
+      expiresIn
+    });
+    return {
+      user,
+      token
+    };
+  }
+
+}) || _class) || _class) || _class) || _class) || _class);
+var _default = AuthenticateUserService;
+exports.default = _default;

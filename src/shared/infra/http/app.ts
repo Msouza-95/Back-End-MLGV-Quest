@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import 'express-async-errors';
 import 'dotenv/config';
-import '@shared/infra/typeorm';
-import '@shared/container';
+import '@shared/infra/typeorm/index';
+import '@shared/container/index';
 
 import express, { NextFunction, Request, Response } from 'express';
 

@@ -1,4 +1,3 @@
-"use strict";
 // import FakeExamRepository from '@modules/exam/repositories/fake/FakeExamRepository';
 // import FakeQuestionRepository from '@modules/exam/repositories/fake/FakeQuestionRepository';
 // import CreateQuestionService from '../CreateQuestionService';
@@ -20,3 +19,4 @@
 //     expect(newQuestion).toHaveProperty('id');
 //   });
 // });
+"use strict";
