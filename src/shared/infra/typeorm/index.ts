@@ -9,7 +9,8 @@ interface IConnectionOptions {
 
 //   return createConnection(
 //     Object.assign(defaultOptions, {
-//       database: defaultOptions.database,
+//       database:
+//         process.env.NODE_ENV === 'test' ? 'mlgv_test' : defaultOptions.database,
 //     }),
 //   );
 // };
