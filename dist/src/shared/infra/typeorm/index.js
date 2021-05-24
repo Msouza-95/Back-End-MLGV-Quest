@@ -13,7 +13,7 @@ var _typeorm = require("typeorm");
 var _default = async () => {
   const defaultOptions = await (0, _typeorm.getConnectionOptions)();
   return (0, _typeorm.createConnection)(Object.assign(defaultOptions, {
-    database: process.env.NODE_ENV === 'test' ? 'mlgv_test' : defaultOptions.database
+    database: process.env.NODE_ENV === 'test' ? 'mlgv_db' : defaultOptions.database
   }));
 }; // getConnectionOptions().then(options => {
 //   const newOptions = options as IConnectionOptions;
