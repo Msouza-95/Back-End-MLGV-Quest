@@ -1,30 +1,24 @@
 import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-// export default createConnection().then(async conn => {
-//   console.log('Connection established...');
+interface IConnectionOptions {
+  host: string;
+}
 
-//   return conn;
-// });
+// export default async (): Promise<Connection> => {
+//   const defaultOptions = await getConnectionOptions();
 
-// interface IConnectionOptions {
-//   host: string;
-// }
+//   return createConnection(
+//     Object.assign(defaultOptions, {
+//       database: defaultOptions.database,
+//     }),
+//   );
+// };
 
-export default async (): Promise<Connection> => {
-  const defaultOptions = await getConnectionOptions();
+getConnectionOptions().then(options => {
+  const newOptions = options as IConnectionOptions;
+  newOptions.host = 'database'; // Esta opção deve estar exatamente com o mesmo nome definido no arquivo docker-compose.yml
 
-  return createConnection(
-    Object.assign(defaultOptions, {
-      database: defaultOptions.database,
-    }),
-  );
-};
-
-// getConnectionOptions().then(options => {
-//   const newOptions = options as IConnectionOptions;
-//   newOptions.host = 'database'; // Esta opção deve estar exatamente com o mesmo nome definido no arquivo docker-compose.yml
-
-//   createConnection({
-//     ...options,
-//   });
-// });
+  createConnection({
+    ...options,
+  });
+});
