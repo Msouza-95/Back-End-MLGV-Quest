@@ -10,5 +10,5 @@ src/test
 scripts/
 yarn-error.log
 debug.log
-
+dist
 /coverage
