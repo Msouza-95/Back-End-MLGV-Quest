@@ -7,13 +7,17 @@ exports.default = void 0;
 
 var _typeorm = require("typeorm");
 
+// export default createConnection().then(async conn => {
+//   console.log('Connection established...');
+//   return conn;
+// });
 // interface IConnectionOptions {
 //   host: string;
 // }
 var _default = async () => {
   const defaultOptions = await (0, _typeorm.getConnectionOptions)();
   return (0, _typeorm.createConnection)(Object.assign(defaultOptions, {
-    database: process.env.NODE_ENV === 'test' ? 'mlgv_db' : defaultOptions.database
+    database: defaultOptions.database
   }));
 }; // getConnectionOptions().then(options => {
 //   const newOptions = options as IConnectionOptions;

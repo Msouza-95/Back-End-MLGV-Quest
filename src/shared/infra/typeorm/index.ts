@@ -1,25 +1,24 @@
 import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-export default createConnection().then(async conn => {
-  console.log('Connection established...');
+// export default createConnection().then(async conn => {
+//   console.log('Connection established...');
 
-  return conn;
-});
+//   return conn;
+// });
 
 // interface IConnectionOptions {
 //   host: string;
 // }
 
-// export default async (): Promise<Connection> => {
-//   const defaultOptions = await getConnectionOptions();
+export default async (): Promise<Connection> => {
+  const defaultOptions = await getConnectionOptions();
 
-//   return createConnection(
-//     Object.assign(defaultOptions, {
-//       database:
-//         process.env.NODE_ENV === 'test' ? 'mlgv_db' : defaultOptions.database,
-//     }),
-//   );
-// };
+  return createConnection(
+    Object.assign(defaultOptions, {
+      database: defaultOptions.database,
+    }),
+  );
+};
 
 // getConnectionOptions().then(options => {
 //   const newOptions = options as IConnectionOptions;
