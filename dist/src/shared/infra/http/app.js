@@ -10,6 +10,7 @@ require("reflect-metadata");
 require("express-async-errors");
 
 require("dotenv/config");
+<<<<<<< HEAD
 
 require("../typeorm");
 
@@ -26,6 +27,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const app = (0, _express.default)();
 app.use(_express.default.json());
 app.use(_routes.default);
+=======
+//import '@shared/infra/typeorm';
+require("@shared/container");
+const express_1 = __importDefault(require("express"));
+const AppError_1 = __importDefault(require("../../errors/AppError"));
+const routes_1 = __importDefault(require("./routes"));
+const app = express_1.default();
+app.use(express_1.default.json());
+app.use(routes_1.default);
+>>>>>>> develop
 app.use((error, request, response, _next) => {
   if (error instanceof _AppError.default) {
     return response.status(error.statusCode).json({
