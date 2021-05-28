@@ -1,24 +1,24 @@
 import { inject, injectable } from 'tsyringe';
 
+import ExamQuestionGroup from '../infra/typeorm/entities/ExamQuestionGroup';
 import QuestionGroup from '../infra/typeorm/entities/QuestionGroup';
+import IExamQuestionGroupRepository from '../repositories/IExamQuestionGroupRepository';
 import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
 @injectable()
 class ShowQuestionGroupService {
   constructor(
-    @inject('QuestionGroupRepository')
-    private questionGroupRepository: IQuestionGroupRepository,
+    @inject('ExamQuestionGroupRepository')
+    private examQuestionGroupRepository: IExamQuestionGroupRepository,
   ) {}
-  public async execute(id?: number): Promise<QuestionGroup | QuestionGroup[]> {
-    if (id) {
-      const questionGroup = await this.questionGroupRepository.findById(id);
+  public async execute(
+    exam_id: number,
+  ): Promise<ExamQuestionGroup[] | undefined> {
+    const examQuestionGroup = await this.examQuestionGroupRepository.findByExamId(
+      exam_id,
+    );
 
-      if (questionGroup) {
-        return questionGroup;
-      }
-    }
-    const questionGroup = await this.questionGroupRepository.index();
-    return questionGroup;
+    return examQuestionGroup;
   }
 }
 
