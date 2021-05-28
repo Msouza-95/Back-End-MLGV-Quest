@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import ExamQuestionGroup from '../infra/typeorm/entities/ExamQuestionGroup';
+import QuestionGroup from '../infra/typeorm/entities/QuestionGroup';
 import IExamQuestionGroupRepository from '../repositories/IExamQuestionGroupRepository';
 import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
@@ -24,7 +24,7 @@ class CreateQuestionGroupService {
     title,
     classs,
     exam_id,
-  }: IRequest): Promise<ExamQuestionGroup> {
+  }: IRequest): Promise<QuestionGroup> {
     const findGroup = await this.questionGroupRepository.findTitle(title);
 
     if (findGroup) {
@@ -36,12 +36,16 @@ class CreateQuestionGroupService {
       classs,
     });
 
-    const newExamQuestionGroup = await this.examQuestionGroupRepository.create({
-      question_group_id: newQuestionGroup.id,
-      exam_id,
-    });
+    if (newQuestionGroup) {
+      const newExamQuestionGroup = await this.examQuestionGroupRepository.create(
+        {
+          question_group_id: newQuestionGroup.id,
+          exam_id,
+        },
+      );
+    }
 
-    return newExamQuestionGroup;
+    return newQuestionGroup;
   }
 }
 
