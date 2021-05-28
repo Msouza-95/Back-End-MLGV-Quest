@@ -7,7 +7,7 @@ import ShowQuestionGroupService from '@modules/exam/services/ShowQuestionGroupSe
 
 class QuestionGroupController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { title, classs } = request.body;
+    const { title, classs, exam_id } = request.body;
 
     const createQuestionGroupService = container.resolve(
       CreateQuestionGroupService,
@@ -16,6 +16,7 @@ class QuestionGroupController {
     const questionGroup = await createQuestionGroupService.execute({
       title,
       classs,
+      exam_id,
     });
 
     return response.status(201).json(questionGroup);

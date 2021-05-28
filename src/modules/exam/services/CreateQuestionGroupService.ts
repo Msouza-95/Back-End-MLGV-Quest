@@ -2,12 +2,14 @@ import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import QuestionGroup from '../infra/typeorm/entities/QuestionGroup';
+import ExamQuestionGroup from '../infra/typeorm/entities/ExamQuestionGroup';
+import IExamQuestionGroupRepository from '../repositories/IExamQuestionGroupRepository';
 import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
 interface IRequest {
   title: string;
   classs: number;
+  exam_id: number;
 }
 
 @injectable()
@@ -15,8 +17,14 @@ class CreateQuestionGroupService {
   constructor(
     @inject('QuestionGroupRepository')
     private questionGroupRepository: IQuestionGroupRepository,
+    @inject('ExamQuestionGroupRepository')
+    private examQuestionGroupRepository: IExamQuestionGroupRepository,
   ) {}
-  public async execute({ title, classs }: IRequest): Promise<QuestionGroup> {
+  public async execute({
+    title,
+    classs,
+    exam_id,
+  }: IRequest): Promise<ExamQuestionGroup> {
     const findGroup = await this.questionGroupRepository.findTitle(title);
 
     if (findGroup) {
@@ -28,7 +36,12 @@ class CreateQuestionGroupService {
       classs,
     });
 
-    return newQuestionGroup;
+    const newExamQuestionGroup = await this.examQuestionGroupRepository.create({
+      question_group_id: newQuestionGroup.id,
+      exam_id,
+    });
+
+    return newExamQuestionGroup;
   }
 }
 
