@@ -27,9 +27,9 @@ class CreateQuestionGroupService {
   }: IRequest): Promise<QuestionGroup> {
     const findGroup = await this.questionGroupRepository.findTitle(title);
 
-    if (findGroup) {
-      throw new AppError('QuestionGroup aready exists');
-    }
+    // if (findGroup) {
+    //   throw new AppError('QuestionGroup aready exists');
+    // }
 
     const newQuestionGroup = await this.questionGroupRepository.create({
       title,

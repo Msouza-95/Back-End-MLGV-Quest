@@ -30,12 +30,15 @@ class ShowQuestionGroupService {
         Object.assign(
           Group,
           // eslint-disable-next-line no-await-in-loop
-          await this.questionGroupRepository.findById(examQuestionGroup[i].id),
+          await this.questionGroupRepository.findById(
+            examQuestionGroup[i].question_group_id,
+          ),
         );
 
         questionGroup.push(Group);
       }
     }
+
     return questionGroup;
   }
 }
