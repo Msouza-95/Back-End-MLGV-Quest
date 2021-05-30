@@ -22,33 +22,25 @@ class ShowQuestionService {
   public async execute({
     exam_id,
     question_group_id,
-  }: IRequest): Promise<Question[]> {
+  }: IRequest): Promise<Question[] | undefined> {
     const ids = await this.examQuestionGroupRepository.allEquivalente({
       exam_id,
       question_group_id,
     });
 
-    const questions: Question[] = [];
+    let question;
 
     if (ids) {
       const { length } = ids;
 
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < length; i++) {
-        const question = new Question();
-
         // eslint-disable-next-line no-await-in-loop
-        Object.assign(
-          question,
-          // eslint-disable-next-line no-await-in-loop
-          await this.questionRepository.findByExamGroupID(ids[i].id),
-        );
-
-        questions.push(question);
+        question = await this.questionRepository.findByExamGroupID(ids[i].id);
       }
     }
 
-    return questions;
+    return question;
   }
 }
 

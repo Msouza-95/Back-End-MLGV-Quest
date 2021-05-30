@@ -5,6 +5,8 @@ import CreateExamService from '@modules/exam/services/CreateExamService';
 import KeepExamService from '@modules/exam/services/KeepExamService';
 import ShowExamService from '@modules/exam/services/ShowExamService';
 
+import Exam from '../../typeorm/entities/Exam';
+
 class ExamController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
