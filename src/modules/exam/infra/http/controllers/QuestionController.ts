@@ -7,15 +7,9 @@ import ShowQuestionService from '@modules/exam/services/ShowQuestionService';
 
 class QuestionController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      statement,
-      image_url,
-      image_alt,
-      required,
-      question_group_id,
-      exam_id,
-    } = request.body;
+    const { statement, image_url, image_alt, required } = request.body;
 
+    const { id, ids } = request.params;
     const createQuestionService = container.resolve(CreateQuestionService);
 
     const question = await createQuestionService.execute({
@@ -23,8 +17,8 @@ class QuestionController {
       image_url,
       image_alt,
       required,
-      question_group_id,
-      exam_id,
+      question_group_id: Number(ids),
+      exam_id: Number(id),
     });
 
     return response.status(201).json(question);
