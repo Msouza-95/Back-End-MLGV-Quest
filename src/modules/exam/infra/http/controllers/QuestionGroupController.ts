@@ -7,7 +7,8 @@ import ShowQuestionGroupService from '@modules/exam/services/ShowQuestionGroupSe
 
 class QuestionGroupController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { title, classs, exam_id } = request.body;
+    const { title, classs } = request.body;
+    const { id } = request.params;
 
     const createQuestionGroupService = container.resolve(
       CreateQuestionGroupService,
@@ -16,20 +17,20 @@ class QuestionGroupController {
     const questionGroup = await createQuestionGroupService.execute({
       title,
       classs,
-      exam_id,
+      exam_id: Number(id),
     });
 
     return response.status(201).json(questionGroup);
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
-    const showQuestionGroupService = container.resolve(
-      ShowQuestionGroupService,
-    );
-    const questionGroups = await showQuestionGroupService.execute();
+  // public async index(request: Request, response: Response): Promise<Response> {
+  //   const showQuestionGroupService = container.resolve(
+  //     ShowQuestionGroupService,
+  //   );
+  //   const questionGroups = await showQuestionGroupService.execute();
 
-    return response.status(200).json(questionGroups);
-  }
+  //   return response.status(200).json(questionGroups);
+  // }
 
   public async read(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
