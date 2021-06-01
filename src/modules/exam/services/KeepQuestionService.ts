@@ -55,9 +55,6 @@ class KeepQuestionService {
           image_alt,
           required,
         });
-
-        console.log('-------');
-        console.log(questionGroup);
       }
     }
     return {
