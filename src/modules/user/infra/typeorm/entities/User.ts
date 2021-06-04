@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import Professor from './Professor';
+import StudentClass from './StudentClass';
 
 @Entity('user')
 class User {
@@ -13,6 +16,14 @@ class User {
 
   @Column()
   type: string;
+
+  // relation
+
+  @OneToMany(() => Professor, professor => professor.user)
+  professors: Professor[];
+
+  @OneToMany(() => StudentClass, studentClass => studentClass.user)
+  studentClass: StudentClass[];
 }
 
 export default User;

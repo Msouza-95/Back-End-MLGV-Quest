@@ -2,9 +2,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+import UserAgreement from '@modules/answer/infra/typeorm/entities/UserAgreement';
 
 import Period from './Period';
 
@@ -42,9 +45,13 @@ class Exam {
   @Column()
   period_id: number;
 
+  // realtions
   @OneToOne(() => Period)
   @JoinColumn({ name: 'period_id' })
   period: Period;
+
+  @OneToMany(() => UserAgreement, userAgreement => userAgreement.exam)
+  userAgreements: UserAgreement[];
 }
 
 export default Exam;
