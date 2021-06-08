@@ -23,7 +23,7 @@ class UserAgreement {
   uuid: string;
 
   @Column()
-  created_at: Timestamp;
+  created_at: Date;
 
   @Column()
   anoymous: boolean;

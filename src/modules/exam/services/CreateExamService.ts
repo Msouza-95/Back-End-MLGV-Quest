@@ -30,11 +30,11 @@ class CreateExamService {
     const findExam = await this.examRepository.findByTitle(title);
 
     if (findExam) {
-      throw new AppError('Name Exam exists');
+      throw new AppError('Name Exam exists', 401);
     }
 
     if (started_at > ended_at) {
-      throw new AppError('Start date cannot be greater than an end');
+      throw new AppError('Start date cannot be greater than an end', 402);
     }
     const createExam = await this.examRepository.create({
       title,
