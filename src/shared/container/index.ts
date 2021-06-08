@@ -1,5 +1,11 @@
 import { container } from 'tsyringe';
 
+import UserAgreementRepository from '@modules/answer/infra/typeorm/repositories/UserAgreementRepository';
+import UserAnswerClassRepository from '@modules/answer/infra/typeorm/repositories/UserAnswerClassRepository';
+import UserAnswerRepository from '@modules/answer/infra/typeorm/repositories/UserAnswerRepository';
+import IUserAgreementRepository from '@modules/answer/repositories/IUserAgreementRepository';
+import IUserAnswerClassRepository from '@modules/answer/repositories/IUserAnswerClassRepository';
+import IUserAnswerRepository from '@modules/answer/repositories/IUserAnswerRepository';
 import ExamQuestionGroupRepository from '@modules/exam/infra/typeorm/repositories/ExamQuestionGroupRepository';
 import ExamRepository from '@modules/exam/infra/typeorm/repositories/ExamRepository';
 import QuestionGroupRepository from '@modules/exam/infra/typeorm/repositories/QuestionGroupRepository';
@@ -32,4 +38,19 @@ container.registerSingleton<IQuestionGroupRepository>(
 container.registerSingleton<IExamQuestionGroupRepository>(
   'ExamQuestionGroupRepository',
   ExamQuestionGroupRepository,
+);
+
+container.registerSingleton<IUserAgreementRepository>(
+  'UserAgreementRepository',
+  UserAgreementRepository,
+);
+
+container.registerSingleton<IUserAnswerRepository>(
+  'UserAnswerRepository',
+  UserAnswerRepository,
+);
+
+container.registerSingleton<IUserAnswerClassRepository>(
+  'UserAnswerClassRepository',
+  UserAnswerClassRepository,
 );
