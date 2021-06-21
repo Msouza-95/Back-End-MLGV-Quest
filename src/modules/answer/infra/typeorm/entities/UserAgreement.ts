@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   Timestamp,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 import Exam from '@modules/exam/infra/typeorm/entities/Exam';
 import User from '@modules/user/infra/typeorm/entities/User';
@@ -45,6 +46,14 @@ class UserAgreement {
 
   @OneToMany(() => UserAnswer, userAnswer => userAnswer.userAgreement)
   userAnswers: UserAnswer[];
+
+  constructor() {
+    this.created_at = new Date();
+
+    if (!this.id) {
+      this.uuid = uuid();
+    }
+  }
 }
 
 export default UserAgreement;

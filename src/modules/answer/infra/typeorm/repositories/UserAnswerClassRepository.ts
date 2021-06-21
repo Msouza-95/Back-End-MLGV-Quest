@@ -6,16 +6,21 @@ import IUserAnswerClassRepository from '@modules/answer/repositories/IUserAnswer
 import UserAnswerClass from '../entities/UserAnswerClass';
 
 class UserAnswerClassRepository implements IUserAnswerClassRepository {
-  private ormRepository: Repository<UserAnswerClassRepository>;
+  private ormRepository: Repository<UserAnswerClass>;
 
   constructor() {
-    this.ormRepository = getRepository(UserAnswerClassRepository);
+    this.ormRepository = getRepository(UserAnswerClass);
   }
-  create(data: ICreateUserAnswerClass): Promise<UserAnswerClass> {
-    throw new Error('Method not implemented.');
+  public async create(data: ICreateUserAnswerClass): Promise<UserAnswerClass> {
+    const newAnswerClass = this.ormRepository.create(data);
+
+    await this.ormRepository.save(newAnswerClass);
+    return newAnswerClass;
   }
-  findByID(id: number): Promise<UserAnswerClass | undefined> {
-    throw new Error('Method not implemented.');
+  public async findByID(id: number): Promise<UserAnswerClass | undefined> {
+    const findAnswerClass = await this.ormRepository.findOne({ where: { id } });
+
+    return findAnswerClass;
   }
 }
 

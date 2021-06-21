@@ -11,11 +11,17 @@ class UserAnswerRepository implements IUserAnswerRepository {
   constructor() {
     this.ormRepository = getRepository(UserAnswer);
   }
-  create(data: ICreateUserAnswer): Promise<UserAnswer> {
-    throw new Error('Method not implemented.');
+  public async create(data: ICreateUserAnswer): Promise<UserAnswer> {
+    const newUserAnswer = this.ormRepository.create(data);
+
+    await this.ormRepository.save(newUserAnswer);
+
+    return newUserAnswer;
   }
-  findById(id: number): Promise<UserAnswer | undefined> {
-    throw new Error('Method not implemented.');
+  public async findById(id: number): Promise<UserAnswer | undefined> {
+    const findAnswer = await this.ormRepository.findOne({ where: { id } });
+
+    return findAnswer;
   }
 }
 

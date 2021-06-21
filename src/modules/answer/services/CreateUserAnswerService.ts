@@ -33,6 +33,15 @@ class CreateUserAnswerService {
     anoymous,
     score,
     class_id,
-  }: IRequest) {}
+  }: IRequest) {
+    // verificar se é professor ou auluno
+    // preciso verificar se user já respondeu essa questão
+    // preciso verificar se a resposta é atrlada a discplina ou não
+    // se é atrelado a disciplna verificar disciplinas que estão ligadas  e responder o exam
+    // não é atrelado a disciplina apenas responder
+    if (isClass) {
+    }
+  }
 }
+
 export default CreateUserAnswerService;

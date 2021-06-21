@@ -11,11 +11,16 @@ class UserAgreementRepository implements IUserAgreementRepository {
   constructor() {
     this.ormRepository = getRepository(UserAgreement);
   }
-  create(data: ICreateUserAgreement): Promise<UserAgreement> {
-    throw new Error('Method not implemented.');
+  public async create(data: ICreateUserAgreement): Promise<UserAgreement> {
+    const newAgreement = this.ormRepository.create(data);
+    await this.ormRepository.save(newAgreement);
+
+    return newAgreement;
   }
-  findByID(id: number): Promise<UserAgreement | undefined> {
-    throw new Error('Method not implemented.');
+  public async findByID(id: number): Promise<UserAgreement | undefined> {
+    const findAgreement = this.ormRepository.findOne(id);
+
+    return findAgreement;
   }
 }
 
