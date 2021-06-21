@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
+  C:\Program Files\nodejs\node.exe C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add babel.config.js build dist docker-compose.yml dockerfile document jest.config.ts node_modules ormconfig.exemple.js ormconfig.js package.json prettier.config.js src tsconfig.json yarn.lock yarn-error.log
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\MSOUZA\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27;C:\Python27\Scripts;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\OpenJDK\openjdk-8u262-b10\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\MSOUZA\AppData\Local\Microsoft\WindowsApps;C:\Users\MSOUZA\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\MSOUZA\AppData\Roaming\npm;C:\Users\MSOUZA\AppData\Local\Android\Sdk\emulator;C:\Users\MSOUZA\AppData\Local\Android\Sdk\tools;C:\Users\MSOUZA\AppData\Local\Android\Sdk\tools\bin;C:\Users\MSOUZA\AppData\Local\Android\Sdk\platform-tools
@@ -14,12 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\projetos\Back-End-MLGV-Quest\package.json: Unexpected token < in JSON at position 313
-      at JSON.parse (<anonymous>)
-      at C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
-      at C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+  Error: https://registry.yarnpkg.com/babel.config.js: Not found
+      at Request.params.callback [as _callback] (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
+      at Request.self.callback (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (C:\Users\MSOUZA\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1252:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
 
 npm manifest: 
   {
@@ -31,11 +36,8 @@ npm manifest:
     "scripts": {
       "test": "jest",
       "dev": "tsnd -r tsconfig-paths/register --transpile-only --inspect --ignore-watch node_modules src/shared/infra/http/server.ts",
-  <<<<<<< HEAD
-      "build": "babel src --extensions \".js,.ts\" --out-dir dist/src  --copy-files ",
-  =======
-      "build": "tsc",
-  >>>>>>> develop
+      "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+      "buildtsc": "tsc",
       "start": "node dist/src/shared/infra/http/server.js",
       "typeorm": "tsnd -r tsconfig-paths/register node_modules/typeorm/cli"
     },
@@ -43,6 +45,7 @@ npm manifest:
       "D": "^1.0.0",
       "axios": "^0.21.1",
       "bcrypt": "^5.0.1",
+      "cors": "^2.8.5",
       "dotenv": "^8.2.0",
       "editorconfig": "^0.15.3",
       "express": "^4.17.1",
@@ -63,6 +66,7 @@ npm manifest:
       "@babel/preset-env": "^7.14.2",
       "@babel/preset-typescript": "^7.13.0",
       "@types/bcrypt": "^3.0.1",
+      "@types/cors": "^2.8.10",
       "@types/express": "^4.17.11",
       "@types/jest": "^26.0.23",
       "@types/jsonwebtoken": "^8.5.1",
@@ -1481,6 +1485,11 @@ Lockfile:
     dependencies:
       "@types/node" "*"
   
+  "@types/cors@^2.8.10":
+    version "2.8.10"
+    resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.10.tgz#61cc8469849e5bcdd0c7044122265c39cec10cf4"
+    integrity sha512-C7srjHiVG3Ey1nR6d511dtDkCEjxuN9W1HWAEjGq8kpcwmNM6JJkpC0xvabM7BXTG2wDq8Eu33iH9aQKa7IvLQ==
+  
   "@types/express-serve-static-core@^4.17.18":
     version "4.17.19"
     resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.19.tgz#00acfc1632e729acac4f1530e9e16f6dd1508a1d"
@@ -2559,6 +2568,14 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
     integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  
+  cors@^2.8.5:
+    version "2.8.5"
+    resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+    integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+    dependencies:
+      object-assign "^4"
+      vary "^1"
   
   create-require@^1.1.0:
     version "1.1.1"
@@ -5222,7 +5239,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
     integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
   
-  object-assign@^4.0.1, object-assign@^4.1.0:
+  object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
     integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -6953,7 +6970,7 @@ Lockfile:
       spdx-correct "^3.0.0"
       spdx-expression-parse "^3.0.0"
   
-  vary@~1.1.2:
+  vary@^1, vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
     integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
