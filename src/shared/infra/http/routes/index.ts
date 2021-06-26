@@ -5,6 +5,7 @@ import examRoutes from '@modules/exam/infra/http/routes/exam.routes';
 import positonQuestionGroupRoutes from '@modules/exam/infra/http/routes/positionQuestionGroup.routes';
 import questionRoutes from '@modules/exam/infra/http/routes/question.routes';
 import questionGroupRoutes from '@modules/exam/infra/http/routes/questionGroup.routes';
+import questionToUserRoutes from '@modules/exam/infra/http/routes/questionToUser.routes';
 import authenticateRoutes from '@modules/user/infra/http/routes/authenticate.routes';
 import usersRouter from '@modules/user/infra/http/routes/users.routes';
 
@@ -17,5 +18,6 @@ routes.use('/question', questionRoutes);
 routes.use('/questiongroup', questionGroupRoutes);
 routes.use('/positionquestiongroup', positonQuestionGroupRoutes);
 routes.use('/copyexam', copyExamRoutes);
+routes.use('/questiontouser', questionToUserRoutes);
 
 export default routes;

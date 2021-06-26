@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 
-import ExamQuestionGroup from '../infra/typeorm/entities/ExamQuestionGroup';
 import Question from '../infra/typeorm/entities/Question';
 import IExamQuestionGroupRepository from '../repositories/IExamQuestionGroupRepository';
 import IQuestionRepository from '../repositories/IQuestionRepository';
