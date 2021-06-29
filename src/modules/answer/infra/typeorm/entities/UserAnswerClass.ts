@@ -22,6 +22,9 @@ class UserAnswerClass {
   @Column()
   score: number;
 
+  @Column()
+  comment: string;
+
   // relations
 
   @ManyToOne(() => UserAnswer, userAnswer => userAnswer.userAnswerClass)

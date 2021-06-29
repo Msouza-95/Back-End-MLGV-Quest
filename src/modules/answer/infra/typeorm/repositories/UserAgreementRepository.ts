@@ -11,6 +11,7 @@ class UserAgreementRepository implements IUserAgreementRepository {
   constructor() {
     this.ormRepository = getRepository(UserAgreement);
   }
+
   public async create(data: ICreateUserAgreement): Promise<UserAgreement> {
     const newAgreement = this.ormRepository.create(data);
     await this.ormRepository.save(newAgreement);
@@ -19,6 +20,12 @@ class UserAgreementRepository implements IUserAgreementRepository {
   }
   public async findByID(id: number): Promise<UserAgreement | undefined> {
     const findAgreement = this.ormRepository.findOne(id);
+
+    return findAgreement;
+  }
+
+  findByExamID(exam_id: number): Promise<UserAgreement | undefined> {
+    const findAgreement = this.ormRepository.findOne(exam_id);
 
     return findAgreement;
   }

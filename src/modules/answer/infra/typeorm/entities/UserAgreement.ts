@@ -51,7 +51,8 @@ class UserAgreement {
     this.created_at = new Date();
 
     if (!this.id) {
-      this.uuid = uuid();
+      const rondom = Math.floor(Math.random() * 10000000000);
+      this.uuid = String(rondom);
     }
   }
 }

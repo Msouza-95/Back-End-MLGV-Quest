@@ -23,6 +23,16 @@ class FakeUserAgreementRepository implements IUserAgreementRepository {
 
     return findUserAgreement;
   }
+
+  public async findByExamID(
+    exam_id: number,
+  ): Promise<UserAgreement | undefined> {
+    const findUserAgreement = this.userAgreements.find(
+      userAgreement => userAgreement.exam_id === exam_id,
+    );
+
+    return findUserAgreement;
+  }
 }
 
 export default FakeUserAgreementRepository;

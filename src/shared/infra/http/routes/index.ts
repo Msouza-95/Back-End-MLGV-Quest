@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import userAgreementRoutes from '@modules/answer/infra/http/routes/userAgreement.routes';
 import copyExamRoutes from '@modules/exam/infra/http/routes/copyExam.routes';
 import examRoutes from '@modules/exam/infra/http/routes/exam.routes';
 import positonQuestionGroupRoutes from '@modules/exam/infra/http/routes/positionQuestionGroup.routes';
@@ -19,5 +20,6 @@ routes.use('/questiongroup', questionGroupRoutes);
 routes.use('/positionquestiongroup', positonQuestionGroupRoutes);
 routes.use('/copyexam', copyExamRoutes);
 routes.use('/questiontouser', questionToUserRoutes);
+routes.use('/agreement', userAgreementRoutes);
 
 export default routes;
