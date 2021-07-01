@@ -5,6 +5,7 @@ import app from '@shared/infra/http/app';
 
 import User from '../infra/typeorm/entities/User';
 import IAuthRepository from '../repositories/IAuthRepository';
+import IProfessorRepository from '../repositories/IProfessorRepository';
 import IUserRepository from '../repositories/IUserRepository';
 
 interface IRequest {
@@ -21,6 +22,8 @@ class CreateUserService {
     private userRepository: IUserRepository,
     @inject('AuthRepository')
     private authRepository: IAuthRepository,
+    @inject('ProfessorRepository')
+    private professorRepository: IProfessorRepository,
   ) {}
 
   public async execute({
@@ -34,12 +37,18 @@ class CreateUserService {
     if (findUser) {
       throw new AppError('User Aready Exists');
     }
+
+    // criar user
     const newUser = await this.userRepository.create({
       email,
       enrollment,
       type,
     });
 
+    // add user na tabela de professor caso seja
+    await this.professorRepository.create(newUser.id);
+
+    // add user na table de autenticação
     const newAuth = await this.authRepository.create(newUser.id, password);
     if (newAuth) {
       return newUser;

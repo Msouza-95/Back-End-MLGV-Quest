@@ -11,7 +11,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 
 import Class from './Class';
 
-@Entity('student_class')
+@Entity('studentClass')
 class StudentClass {
   @PrimaryGeneratedColumn('increment')
   id: number;

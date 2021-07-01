@@ -1,20 +1,20 @@
-import { inject, injectable } from 'tsyringe';
+import { container, inject, injectable } from 'tsyringe';
 
-import IUserRepository from '@modules/user/repositories/IUserRepository';
+import SubjectUserService from '@modules/course/services/SubjectUserService';
+import IExamQuestionGroupRepository from '@modules/exam/repositories/IExamQuestionGroupRepository';
 import AppError from '@shared/errors/AppError';
 
-import IUserAgreementRepository from '../repositories/IUserAgreementRepository';
+import UserAnswer from '../infra/typeorm/entities/UserAnswer';
+import UserAnswerClass from '../infra/typeorm/entities/UserAnswerClass';
 import IUserAnswerClassRepository from '../repositories/IUserAnswerClassRepository';
 import IUserAnswerRepository from '../repositories/IUserAnswerRepository';
 
 interface IRequest {
-  exam_id: number;
-  user_id: number;
+  user_agreement_id: number;
   question_id: number;
-  anoymous: boolean;
   score: number;
-  comment: Text;
-  class_id?: number;
+  isClass: boolean;
+  class_id: number;
 }
 
 @injectable()
@@ -22,43 +22,47 @@ class CreateUserAnswerService {
   constructor(
     @inject('UserAnswerRepository')
     private userAnswerRepository: IUserAnswerRepository,
-    @inject('UserAgreementRepository')
-    private userAgreementRepository: IUserAgreementRepository,
     @inject('UserAnswerClassRepository')
     private userAnswerClassRepository: IUserAnswerClassRepository,
-    @inject('UserRepository')
-    private userRepository: IUserRepository,
+    @inject('ExamQuestionGroupRepository')
+    private examQuestionGroupRepository: IExamQuestionGroupRepository,
   ) {}
 
   public async execute({
-    exam_id,
-    user_id,
+    user_agreement_id,
     question_id,
-    anoymous,
     score,
-    comment,
+    isClass,
     class_id,
-  }: IRequest) {
-    // preciso verificar se user já respondeu essa exam
-
-    const userAgreement = await this.userAgreementRepository.findByExamID(
-      exam_id,
-    );
-
-    if (userAgreement) {
-      throw new AppError('User já respondeu Avaliação', 401);
-    }
-
-    // verificar se é professor ou auluno
-
-    const user = await this.userRepository.findById(user_id);
-
-    if (user?.type === 'studant') {
-    } else {
-    }
-    // preciso verificar se a resposta é atrlada a discplina ou não
-    // se é atrelado a disciplna verificar disciplinas que estão ligadas  e responder o exam
+  }: IRequest): Promise<UserAnswer | UserAnswerClass> {
     // não é atrelado a disciplina apenas responder
+    if (!isClass) {
+      const userAnswer = await this.userAnswerRepository.create({
+        question_id,
+        user_agreement_id,
+        score,
+        comment: 'commente test',
+      });
+      return userAnswer;
+    }
+
+    // se é atrelado a disciplna
+
+    const userAnswer = await this.userAnswerRepository.create({
+      question_id,
+      user_agreement_id,
+      score: 1,
+      comment: 'undefined',
+    });
+
+    const userAnswerClass = await this.userAnswerClassRepository.create({
+      user_answer_id: userAnswer.id,
+      class_id,
+      score,
+      comment: ' undefined',
+    });
+
+    return userAnswerClass;
   }
 }
 

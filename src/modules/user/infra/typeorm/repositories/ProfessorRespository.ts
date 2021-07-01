@@ -11,12 +11,17 @@ class ProfesorReprository implements IProfessorRepository {
   constructor() {
     this.ormRepository = getRepository(Professor);
   }
+  public async create(user_id: number): Promise<Professor> {
+    const newProfesor = this.ormRepository.create({ user_id });
+    await this.ormRepository.save(newProfesor);
 
-  public async cratete(data: ICreateProfessorDTO): Promise<Professor> {
-    const newProfessor = this.ormRepository.create(data);
-    await this.ormRepository.save(newProfessor);
+    return newProfesor;
+  }
 
-    return newProfessor;
+  public async findByUserID(user_id: number): Promise<Professor | undefined> {
+    const findProfessor = await this.ormRepository.findOne({ user_id });
+
+    return findProfessor;
   }
 }
 export default ProfesorReprository;

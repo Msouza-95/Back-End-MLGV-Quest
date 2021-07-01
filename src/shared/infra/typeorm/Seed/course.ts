@@ -17,11 +17,31 @@ async function create() {
     `,
   );
 
-  const course_id = course[0].id;
-
   await connection.query(
     ` INSERT INTO subject(code,title,course_id)
-    values('${code2}', 'MAT 1','${course_id}')
+    values('${code2}', 'IHC 1','49')
+    `,
+  );
+
+  const subject = await connection.query(
+    ` select * from  subject where code = '${code2}'
+    `,
+  );
+
+  await connection.query(
+    ` INSERT INTO period(name,started_at,ended_at)
+    values('2020.1','2021-03-05', '2021-03-08')
+    `,
+  );
+
+  const period = await connection.query(
+    ` select * from  period where name = '2020.1'
+    `,
+  );
+
+  await connection.query(
+    ` INSERT INTO class(subject_id,period_id )
+    values('${subject[0].id}','${period[0].id}')
     `,
   );
 

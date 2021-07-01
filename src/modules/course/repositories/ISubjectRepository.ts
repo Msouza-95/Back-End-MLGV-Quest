@@ -1,6 +1,6 @@
 import Subject from '../infra/typeorm/entities/Subject';
 
 interface ISubjectRepository {
-  create(title: string): Promise<Subject>;
+  findByID(subject_id: number): Promise<Subject | undefined>;
 }
 export default ISubjectRepository;

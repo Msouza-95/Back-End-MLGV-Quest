@@ -1,8 +1,8 @@
-import ICreateProfessorDTO from '../dtos/ICreateProfessorDTO';
 import Professor from '../infra/typeorm/entities/Professor';
 
 interface IProfessorRepository {
-  cratete(data: ICreateProfessorDTO): Promise<Professor>;
+  findByUserID(user_id: number): Promise<Professor | undefined>;
+  create(user_id: number): Promise<Professor>;
 }
 
 export default IProfessorRepository;

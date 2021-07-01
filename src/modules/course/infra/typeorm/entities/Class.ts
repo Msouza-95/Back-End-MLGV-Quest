@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  IsNull,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -14,7 +15,7 @@ import ProfessorClass from './ProfessorClass';
 import Subject from './Subject';
 
 @Entity('class')
-class Class {
+class Classs {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -40,4 +41,4 @@ class Class {
   @OneToMany(() => StudentClass, studentclass => studentclass.class_id)
   studentClass: StudentClass[];
 }
-export default Class;
+export default Classs;

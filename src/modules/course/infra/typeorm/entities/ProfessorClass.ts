@@ -11,7 +11,7 @@ import Professor from '@modules/user/infra/typeorm/entities/Professor';
 
 import Class from './Class';
 
-@Entity('professor_class')
+@Entity('professorClass')
 class ProfessorClass {
   @PrimaryGeneratedColumn('increment')
   id: string;
