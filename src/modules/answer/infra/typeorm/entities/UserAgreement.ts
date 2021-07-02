@@ -6,7 +6,6 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  Timestamp,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
