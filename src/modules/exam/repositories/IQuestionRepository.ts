@@ -9,4 +9,5 @@ export default interface IQuestionRepository {
   findByExamGroupID(exam_question_group_id: number): Promise<Question[]>;
   delete(id: number): Promise<DeleteResult>;
   upadate(id: number, data: ICreateQuestion): Promise<UpdateResult>;
+  selectAll(id: number): Promise<Question[]>;
 }

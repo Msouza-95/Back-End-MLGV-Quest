@@ -48,7 +48,6 @@ class KeepQuestionService {
       console.log(required);
 
       if (statement && required !== undefined) {
-        console.log('-------');
         const questionGroup = await this.questionRepository.upadate(id, {
           statement,
           image_url,

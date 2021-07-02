@@ -9,7 +9,7 @@ import {
 
 import UserAgreement from '@modules/answer/infra/typeorm/entities/UserAgreement';
 
-import Period from './Period';
+import Period from '../../../../course/infra/typeorm/entities/Period';
 
 export enum statusEnum {
   active = 'active',

@@ -3,8 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+import ProfessorClass from '@modules/course/infra/typeorm/entities/ProfessorClass';
 
 import User from './User';
 
@@ -19,6 +22,9 @@ class Professor {
   @ManyToOne(() => User, user => user.professors)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToMany(() => ProfessorClass, professorClass => professorClass.professor)
+  professorClass: ProfessorClass;
 }
 
 export default Professor;

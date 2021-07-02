@@ -11,6 +11,7 @@ export default class UserRepository implements IUserRepository {
   constructor() {
     this.ormRepository = getRepository(User);
   }
+
   public async create(data: ICreateUserDTO): Promise<User> {
     const newUser = this.ormRepository.create(data);
 

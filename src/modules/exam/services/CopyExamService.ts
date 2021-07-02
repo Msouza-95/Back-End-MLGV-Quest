@@ -50,7 +50,7 @@ class CopyExamService {
 
     const findtitle = await this.examRepository.findByTitle(title);
     if (findtitle) {
-      throw new AppError('title exam exists');
+      throw new AppError('title exam exists', 401);
     }
 
     // cria um exam novo

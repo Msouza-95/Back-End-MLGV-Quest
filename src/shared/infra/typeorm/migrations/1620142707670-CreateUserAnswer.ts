@@ -20,6 +20,7 @@ export class CreateUserAnswer1620142707670 implements MigrationInterface {
           {
             name: 'question_id',
             type: 'integer',
+            isNullable: true,
           },
           {
             name: 'user_agreement_id',
