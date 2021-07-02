@@ -3,8 +3,6 @@ import { container } from 'tsyringe';
 
 import SubjectUserService from '@modules/course/services/SubjectUserService';
 
-import subjectUserRoutes from '../routes/SubjectUser.routes';
-
 class SubjectUserController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;

@@ -21,7 +21,7 @@ routes.use('/question', questionRoutes);
 routes.use('/questiongroup', questionGroupRoutes);
 routes.use('/positionquestiongroup', positonQuestionGroupRoutes);
 routes.use('/copyexam', copyExamRoutes);
-routes.use('/questiontouser', questionToUserRoutes);
+routes.use('/questionanswer', questionToUserRoutes);
 routes.use('/agreement', userAgreementRoutes);
 routes.use('/answer', userAnswerRoutes);
 routes.use('/subject', subjectUserRoutes);

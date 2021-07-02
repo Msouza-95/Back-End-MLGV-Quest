@@ -15,10 +15,8 @@ class QuestionToUserController {
       ShowQuestionToUserService,
     );
 
-    const result = showQuestionToUserService.execute({
-      exam_id,
-      user_id,
-    });
+    const result = await showQuestionToUserService.execute(exam_id);
+
     return response.json(result);
   }
 }

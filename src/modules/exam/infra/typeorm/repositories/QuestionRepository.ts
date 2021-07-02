@@ -28,6 +28,7 @@ class QuestionRepository implements IQuestionRepository {
     exam_question_group_id: number,
   ): Promise<Question[]> {
     const findQuest = await this.ormRepository.find({
+      relations: ['examQuestionGroup'],
       where: { exam_question_group_id },
     });
 
@@ -46,6 +47,16 @@ class QuestionRepository implements IQuestionRepository {
     const result = await this.ormRepository.update(id, data);
 
     return result;
+  }
+
+  public async selectAll(id: number): Promise<Question[]> {
+    const questionQuery = this.ormRepository
+      .createQueryBuilder('q')
+      .where('exam_question_group_id = :id', { id });
+
+    const question = await questionQuery.getMany();
+
+    return question;
   }
 }
 
