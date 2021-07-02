@@ -24,8 +24,6 @@ class CreateUserAnswerService {
     private userAnswerRepository: IUserAnswerRepository,
     @inject('UserAnswerClassRepository')
     private userAnswerClassRepository: IUserAnswerClassRepository,
-    @inject('ExamQuestionGroupRepository')
-    private examQuestionGroupRepository: IExamQuestionGroupRepository,
   ) {}
 
   public async execute({
@@ -43,6 +41,8 @@ class CreateUserAnswerService {
         score,
         comment: 'commente test',
       });
+
+      console.log(userAnswer.id);
       return userAnswer;
     }
 
@@ -51,15 +51,12 @@ class CreateUserAnswerService {
     const userAnswer = await this.userAnswerRepository.create({
       question_id,
       user_agreement_id,
-      score: 1,
-      comment: 'undefined',
     });
 
     const userAnswerClass = await this.userAnswerClassRepository.create({
       user_answer_id: userAnswer.id,
       class_id,
       score,
-      comment: ' undefined',
     });
 
     return userAnswerClass;

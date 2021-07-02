@@ -39,6 +39,7 @@ class ShowQuestionService {
       }
     }
 
+    console.log(question);
     return question;
   }
 }

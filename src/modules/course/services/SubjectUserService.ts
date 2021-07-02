@@ -1,13 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 
-import StudentClass from '@modules/user/infra/typeorm/entities/StudentClass';
 import IProfessorRepository from '@modules/user/repositories/IProfessorRepository';
 import IUserRepository from '@modules/user/repositories/IUserRepository';
 import AppError from '@shared/errors/AppError';
 
 import Classs from '../infra/typeorm/entities/Class';
-import ProfessorClass from '../infra/typeorm/entities/ProfessorClass';
-import Subject from '../infra/typeorm/entities/Subject';
 import IClassRepository from '../repositories/IClassRepository';
 import IProfessorClassRepository from '../repositories/IProfessorClassRepository';
 import IStudentClassRepository from '../repositories/IStudentClassRepository';

@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import userAgreementRoutes from '@modules/answer/infra/http/routes/userAgreement.routes';
 import userAnswerRoutes from '@modules/answer/infra/http/routes/UserAnswer.routes';
+import subjectUserRoutes from '@modules/course/infra/http/routes/SubjectUser.routes';
 import copyExamRoutes from '@modules/exam/infra/http/routes/copyExam.routes';
 import examRoutes from '@modules/exam/infra/http/routes/exam.routes';
 import positonQuestionGroupRoutes from '@modules/exam/infra/http/routes/positionQuestionGroup.routes';
@@ -23,5 +24,6 @@ routes.use('/copyexam', copyExamRoutes);
 routes.use('/questiontouser', questionToUserRoutes);
 routes.use('/agreement', userAgreementRoutes);
 routes.use('/answer', userAnswerRoutes);
+routes.use('/subject', subjectUserRoutes);
 
 export default routes;

@@ -47,6 +47,9 @@ class UserAgreement {
   @OneToMany(() => UserAnswer, userAnswer => userAnswer.userAgreement)
   userAnswers: UserAnswer[];
 
+  @Column()
+  comment: string;
+
   constructor() {
     this.created_at = new Date();
 

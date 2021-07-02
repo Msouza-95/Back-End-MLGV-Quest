@@ -1,19 +1,19 @@
-import { text } from 'express';
 import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
-export class CreateColumnCommentInUserAnswerClass1624747920054
+export class CreateColumnCommentUseAgreement1625191715781
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'userAnswerClass',
+      'userAgreement',
       new TableColumn({
         name: 'comment',
         type: 'text',
+        isNullable: true,
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('userAnswerClass', 'comment');
+    await queryRunner.dropColumn('userAgreement', 'comment');
   }
 }
