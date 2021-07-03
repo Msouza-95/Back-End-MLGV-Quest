@@ -6,9 +6,7 @@ const usersRouter = Router();
 
 const userController = new UserController();
 
-usersRouter.get('/', (request, response) => {
-  return response.json({ message: 'Rota de users sacou' });
-});
 usersRouter.post('/', userController.create);
+usersRouter.get('/', userController.index);
 
 export default usersRouter;
