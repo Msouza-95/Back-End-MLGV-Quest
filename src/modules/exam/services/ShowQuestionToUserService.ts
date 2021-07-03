@@ -30,16 +30,6 @@ interface IQuestion {
 }
 
 interface IResponse {
-  ids?: number;
-  id: number;
-  title: string;
-  classs: boolean;
-  subject?: ISubject[];
-  questions: IQuestion[];
-}
-
-interface IResponse {
-  ids?: number;
   id: number;
   title: string;
   classs: boolean;
@@ -109,7 +99,6 @@ class ShowQuestionToUserService {
             // eslint-disable-next-line no-lonely-if
             if (group.classs) {
               const a = {
-                ids: this.group.length + 1,
                 id: group.id,
                 title: group.title,
                 classs: group.classs,
@@ -128,7 +117,6 @@ class ShowQuestionToUserService {
               this.group.push(a);
             } else {
               const a = {
-                ids: this.group.length + 1,
                 id: group.id,
                 title: group.title,
                 classs: group.classs,

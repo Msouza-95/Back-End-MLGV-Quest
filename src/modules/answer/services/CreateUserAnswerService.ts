@@ -14,7 +14,7 @@ interface IRequest {
   question_id: number;
   score: number;
   isClass: boolean;
-  class_id: number;
+  class_id?: number;
 }
 
 @injectable()
@@ -51,7 +51,9 @@ class CreateUserAnswerService {
       question_id,
       user_agreement_id,
     });
-
+    if (!class_id) {
+      throw new AppError('class_id ');
+    }
     const userAnswerClass = await this.userAnswerClassRepository.create({
       user_answer_id: userAnswer.id,
       class_id,
