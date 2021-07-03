@@ -10,8 +10,16 @@ class ClassRepository implements IClassRepository {
   constructor() {
     this.ormRepository = getRepository(Classs);
   }
+
   public async findByID(class_id: number): Promise<Classs | undefined> {
     const findClass = await this.ormRepository.findOne(class_id);
+
+    return findClass;
+  }
+  public async find(): Promise<Classs[]> {
+    const findClass = await this.ormRepository.find({
+      relations: ['subject'],
+    });
 
     return findClass;
   }
