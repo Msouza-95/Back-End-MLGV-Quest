@@ -9,7 +9,7 @@ const examRoutes = Router();
 const examController = new ExamController();
 
 examRoutes.use(ensureAuthenticated);
-examRoutes.use(ensureAdmin);
+// examRoutes.use(ensureAdmin);
 examRoutes.post('/', examController.create);
 examRoutes.get('/', examController.index);
 examRoutes.delete('/:id', examController.delete);

@@ -38,6 +38,15 @@ interface IResponse {
   questions: IQuestion[];
 }
 
+interface IResponse {
+  ids?: number;
+  id: number;
+  title: string;
+  classs: boolean;
+  subject?: ISubject[];
+  questions: IQuestion[];
+}
+
 @injectable()
 class ShowQuestionToUserService {
   private group: IResponse[] = [];

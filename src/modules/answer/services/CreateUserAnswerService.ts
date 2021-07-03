@@ -39,7 +39,6 @@ class CreateUserAnswerService {
         question_id,
         user_agreement_id,
         score,
-        comment: 'commente test',
       });
 
       console.log(userAnswer.id);
