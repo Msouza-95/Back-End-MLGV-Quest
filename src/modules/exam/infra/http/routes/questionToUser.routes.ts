@@ -8,6 +8,6 @@ const questionToUserRoutes = Router();
 const questionToUserController = new QuestionToUserController();
 
 questionToUserRoutes.use(ensureAuthenticated);
-questionToUserRoutes.get('/:id', questionToUserController.read);
+questionToUserRoutes.get('/:exam_id', questionToUserController.read);
 
 export default questionToUserRoutes;

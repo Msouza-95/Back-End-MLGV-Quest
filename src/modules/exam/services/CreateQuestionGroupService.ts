@@ -8,7 +8,7 @@ import IQuestionGroupRepository from '../repositories/IQuestionGroupRepository';
 
 interface IRequest {
   title: string;
-  classs: number;
+  classs: boolean;
   exam_id: number;
 }
 

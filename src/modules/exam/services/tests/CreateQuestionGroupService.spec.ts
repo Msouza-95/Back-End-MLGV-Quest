@@ -20,7 +20,7 @@ describe('CreateQuenstionGroup', () => {
   it(' should be albe to create a new Exam', async () => {
     const newQuestionGroup = await createQuestionGroupService.execute({
       title: 'title exemple',
-      classs: 1,
+      classs: true,
       exam_id: 1,
     });
 
