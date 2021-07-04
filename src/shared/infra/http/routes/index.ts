@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import csvRoutes from '@modules/answer/infra/http/routes/CSV.routes';
 import userAgreementRoutes from '@modules/answer/infra/http/routes/userAgreement.routes';
 import userAnswerRoutes from '@modules/answer/infra/http/routes/UserAnswer.routes';
 import classRoutes from '@modules/course/infra/http/routes/CLass.routes';
@@ -29,5 +30,6 @@ routes.use('/answer', userAnswerRoutes);
 routes.use('/subject', subjectUserRoutes);
 routes.use('/class', classRoutes);
 routes.use('/seed', seedRoutes);
+routes.use('/csv', csvRoutes);
 
 export default routes;
