@@ -9,6 +9,6 @@ const subjectUserController = new SubjectUserController();
 
 subjectUserRoutes.use(ensureAuthenticated);
 
-subjectUserRoutes.get('/:id', subjectUserController.create);
+subjectUserRoutes.get('/', subjectUserController.create);
 
 export default subjectUserRoutes;

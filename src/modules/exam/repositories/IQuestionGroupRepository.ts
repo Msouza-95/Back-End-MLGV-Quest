@@ -10,4 +10,5 @@ export default interface IQuestionGroupRepository {
   index(): Promise<QuestionGroup[]>;
   upadate(id: number, data: ICreateQuestionGroup): Promise<UpdateResult>;
   delete(id: number): Promise<DeleteResult>;
+  questions(id: number): Promise<QuestionGroup | undefined>;
 }

@@ -5,7 +5,7 @@ import SubjectUserService from '@modules/course/services/SubjectUserService';
 
 class SubjectUserController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
+    const { id } = request.user;
 
     const subjectUserService = container.resolve(SubjectUserService);
 

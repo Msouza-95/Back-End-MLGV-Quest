@@ -52,6 +52,15 @@ class QuestionGroupRepository implements IQuestionGroupRepository {
     const groupDelete = this.ormRepository.delete(id);
     return groupDelete;
   }
+
+  public async questions(id: number): Promise<QuestionGroup | undefined> {
+    const findQuestionGroup = await this.ormRepository.findOne({
+      relations: ['examQuestionGroups'],
+      where: { id },
+    });
+
+    return findQuestionGroup;
+  }
 }
 
 export default QuestionGroupRepository;
