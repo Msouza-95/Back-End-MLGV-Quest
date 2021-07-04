@@ -1,5 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
+import ICreateClass from '@modules/course/dtos/ICreateClass';
 import IClassRepository from '@modules/course/repositories/IClassRepository';
 
 import Classs from '../entities/Class';
@@ -9,6 +10,12 @@ class ClassRepository implements IClassRepository {
 
   constructor() {
     this.ormRepository = getRepository(Classs);
+  }
+  public async create(data: ICreateClass): Promise<Classs> {
+    const newClass = this.ormRepository.create(data);
+    await this.ormRepository.save(newClass);
+
+    return newClass;
   }
 
   public async findByID(class_id: number): Promise<Classs | undefined> {

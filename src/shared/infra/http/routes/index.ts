@@ -3,6 +3,7 @@ import { Router } from 'express';
 import userAgreementRoutes from '@modules/answer/infra/http/routes/userAgreement.routes';
 import userAnswerRoutes from '@modules/answer/infra/http/routes/UserAnswer.routes';
 import classRoutes from '@modules/course/infra/http/routes/CLass.routes';
+import seedRoutes from '@modules/course/infra/http/routes/Seed.routes';
 import subjectUserRoutes from '@modules/course/infra/http/routes/SubjectUser.routes';
 import copyExamRoutes from '@modules/exam/infra/http/routes/copyExam.routes';
 import examRoutes from '@modules/exam/infra/http/routes/exam.routes';
@@ -27,5 +28,6 @@ routes.use('/agreement', userAgreementRoutes);
 routes.use('/answer', userAnswerRoutes);
 routes.use('/subject', subjectUserRoutes);
 routes.use('/class', classRoutes);
+routes.use('/seed', seedRoutes);
 
 export default routes;

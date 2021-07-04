@@ -10,7 +10,7 @@ class CourseRepository implements ICourseRepository {
     this.ormRespository = getRepository(Course);
   }
   public async create(title: string): Promise<Course> {
-    const createCourse = this.ormRespository.create({ title });
+    const createCourse = await this.ormRespository.create({ title });
     await this.ormRespository.save(createCourse);
 
     return createCourse;
