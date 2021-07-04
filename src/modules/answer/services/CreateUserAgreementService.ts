@@ -24,11 +24,11 @@ class CreateUserAgreementService {
       exam_id,
     );
 
-    if (findUserAgreement) {
-      if (findUserAgreement.uuid) {
-        throw new AppError('User já respondeu Avaliação', 401);
-      }
-    }
+    // if (findUserAgreement) {
+    //   if (findUserAgreement.uuid) {
+    //     throw new AppError('User já respondeu Avaliação', 401);
+    //   }
+    // }
 
     const newUserAgreement = this.userAgreementRepository.create({
       exam_id,
