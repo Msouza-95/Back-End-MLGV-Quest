@@ -17,6 +17,10 @@ interface IRequest {
   class_id?: number;
 }
 
+interface IResponse {
+  name: string;
+}
+
 @injectable()
 class CreateUserAnswerService {
   constructor(
@@ -26,41 +30,48 @@ class CreateUserAnswerService {
     private userAnswerClassRepository: IUserAnswerClassRepository,
   ) {}
 
-  public async execute({
+  public async execute(
+    /* {
     user_agreement_id,
     question_id,
     score,
     isClass,
     class_id,
-  }: IRequest): Promise<UserAnswer | UserAnswerClass> {
+  }: IRequest */ answer: IResponse[],
+  ): Promise</* UserAnswer | UserAnswerClass */ IResponse[]> {
     // não é atrelado a disciplina apenas responder
-    if (!isClass) {
-      const userAnswer = await this.userAnswerRepository.create({
-        question_id,
-        user_agreement_id,
-        score,
-      });
+    // if (!isClass) {
+    //   const userAnswer = await this.userAnswerRepository.create({
+    //     question_id,
+    //     user_agreement_id,
+    //     score,
+    //   });
 
-      console.log(userAnswer.id);
-      return userAnswer;
-    }
+    //   console.log(userAnswer.id);
+    //   return userAnswer;
+    // }
 
-    // se é atrelado a disciplna
+    // // se é atrelado a disciplna
 
-    const userAnswer = await this.userAnswerRepository.create({
-      question_id,
-      user_agreement_id,
-    });
-    if (!class_id) {
-      throw new AppError('class_id ');
-    }
-    const userAnswerClass = await this.userAnswerClassRepository.create({
-      user_answer_id: userAnswer.id,
-      class_id,
-      score,
-    });
+    // const userAnswer = await this.userAnswerRepository.create({
+    //   question_id,
+    //   user_agreement_id,
+    // });
+    // if (!class_id) {
+    //   throw new AppError('class_id ');
+    // }
+    // const userAnswerClass = await this.userAnswerClassRepository.create({
+    //   user_answer_id: userAnswer.id,
+    //   class_id,
+    //   score,
+    // });
 
-    return userAnswerClass;
+    // criar add
+    // if (!this.id) {
+    //   const rondom = Math.floor(Math.random() * 10000000000);
+    //   this.uuid = String(rondom);
+    // }
+    return answer;
   }
 }
 
