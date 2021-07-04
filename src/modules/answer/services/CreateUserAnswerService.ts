@@ -9,7 +9,7 @@ import UserAnswerClass from '../infra/typeorm/entities/UserAnswerClass';
 import IUserAnswerClassRepository from '../repositories/IUserAnswerClassRepository';
 import IUserAnswerRepository from '../repositories/IUserAnswerRepository';
 
-interface IRequest {
+interface IRequests {
   user_agreement_id: number;
   question_id: number;
   score: number;
@@ -17,8 +17,14 @@ interface IRequest {
   class_id?: number;
 }
 
+interface IRequest {
+  answer: [];
+  comment: string;
+}
+
 interface IResponse {
-  name: string;
+  answer: [];
+  comment: string;
 }
 
 @injectable()
@@ -37,8 +43,11 @@ class CreateUserAnswerService {
     score,
     isClass,
     class_id,
-  }: IRequest */ answer: IResponse[],
-  ): Promise</* UserAnswer | UserAnswerClass */ IResponse[]> {
+  }: IRequest */ {
+      answer,
+      comment,
+    }: IRequest,
+  ): Promise</* UserAnswer | UserAnswerClass */ IResponse> {
     // não é atrelado a disciplina apenas responder
     // if (!isClass) {
     //   const userAnswer = await this.userAnswerRepository.create({
@@ -71,7 +80,7 @@ class CreateUserAnswerService {
     //   const rondom = Math.floor(Math.random() * 10000000000);
     //   this.uuid = String(rondom);
     // }
-    return answer;
+    return { answer, comment };
   }
 }
 

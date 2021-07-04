@@ -7,6 +7,7 @@ class UserAnswerController {
   public async create(request: Request, response: Response): Promise<Response> {
     const {
       answer,
+      comment,
       agreement_id,
       score,
       question_id,
@@ -16,15 +17,17 @@ class UserAnswerController {
     console.log('bahia');
     const createUserAnswerService = container.resolve(CreateUserAnswerService);
 
-    const userAnswer = await createUserAnswerService.execute(
-      answer /* {
+    const userAnswer = await createUserAnswerService.execute({
+      answer,
+      comment,
+    });
+    /* {
       user_agreement_id: agreement_id,
       question_id,
       score,
       isClass,
       class_id,
-    } */,
-    );
+    } */
 
     return response.json(userAnswer);
   }
