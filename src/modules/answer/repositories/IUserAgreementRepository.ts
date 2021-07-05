@@ -7,5 +7,5 @@ export default interface IUserAgreementRepository {
   create(data: ICreateUserAgreement): Promise<UserAgreement>;
   findByID(id: number): Promise<UserAgreement | undefined>;
   findByExamID(exam_id: number): Promise<UserAgreement | undefined>;
-  comment(agreement_id: number, comment: string): Promise<void>;
+  comment(agreement_id: number, comment: string, uuid: number): Promise<void>;
 }

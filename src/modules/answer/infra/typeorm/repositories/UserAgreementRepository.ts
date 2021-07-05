@@ -32,10 +32,14 @@ class UserAgreementRepository implements IUserAgreementRepository {
     return findAgreement;
   }
 
-  public async comment(agreement_id: number, comment: string): Promise<void> {
+  public async comment(
+    agreement_id: number,
+    comment: string,
+    uuid: number,
+  ): Promise<void> {
     const up = await this.ormRepository.query(
-      'UPDATE mlgv_quest.userAgreement SET  comment="?" WHERE id=?',
-      [comment, agreement_id],
+      'UPDATE mlgv_quest.userAgreement SET  comment=?, uuid=? WHERE id=?',
+      [comment, uuid, agreement_id],
     );
   }
 }

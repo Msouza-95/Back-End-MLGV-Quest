@@ -47,7 +47,7 @@ class CreateUserAnswerService {
 
         const userAnswerClass = await this.userAnswerClassRepository.create({
           user_answer_id: userAnswer.id,
-          class_id: 6,
+          class_id: 23,
           score: wer.score,
         });
       } else {
@@ -67,11 +67,14 @@ class CreateUserAnswerService {
     });
     await Promise.all(promiseAnswer);
 
+    const rondom = Math.floor(Math.random() * 10000000000);
+    const uuid = String(rondom);
+
     const agreement = await this.userAgreementRepository.comment(
       agreement_id,
       comment,
+      uuid,
     );
-    console.log(comment);
   }
 }
 
