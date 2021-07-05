@@ -6,6 +6,7 @@ import AppError from '@shared/errors/AppError';
 
 import UserAnswer from '../infra/typeorm/entities/UserAnswer';
 import UserAnswerClass from '../infra/typeorm/entities/UserAnswerClass';
+import IUserAgreementRepository from '../repositories/IUserAgreementRepository';
 import IUserAnswerClassRepository from '../repositories/IUserAnswerClassRepository';
 import IUserAnswerRepository from '../repositories/IUserAnswerRepository';
 
@@ -29,15 +30,24 @@ class CreateUserAnswerService {
     private userAnswerRepository: IUserAnswerRepository,
     @inject('UserAnswerClassRepository')
     private userAnswerClassRepository: IUserAnswerClassRepository,
+    @inject('UserAgreementRepository')
+    private userAgreementRepository: IUserAgreementRepository,
   ) {}
 
   public async execute({ answer, comment }: IResponse): Promise<void> {
+    const { agreement_id } = answer[0];
     const promiseAnswer = answer.map(async wer => {
       if (!wer.isClass) {
         console.log('cartola');
         const userAnswer = await this.userAnswerRepository.create({
           question_id: wer.question_id,
           user_agreement_id: wer.agreement_id,
+          score: wer.score,
+        });
+
+        const userAnswerClass = await this.userAnswerClassRepository.create({
+          user_answer_id: userAnswer.id,
+          class_id: 19,
           score: wer.score,
         });
       } else {
@@ -57,6 +67,12 @@ class CreateUserAnswerService {
       }
     });
     await Promise.all(promiseAnswer);
+
+    const agreement = await this.userAgreementRepository.comment(
+      agreement_id,
+      comment,
+    );
+    console.log(comment);
   }
 }
 

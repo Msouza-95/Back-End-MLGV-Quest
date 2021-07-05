@@ -28,25 +28,27 @@ class CreateCSVService {
     if (!examQuery) {
       throw new AppError('não achou nada');
     }
+
+    console.log(examQuery);
     const promisesQuery = examQuery.map(async query => {
       const {
-        Diciplina,
-        Grupoquestão,
-        Questão,
-        Usuário,
+        Disciplina,
+        group_title,
+        Questao,
+        Usuarios,
         Matricula,
-        Comentário,
-        Código,
+        Comentario,
+        Codigo,
       } = query;
 
       const res = {
-        groupquestion: Grupoquestão,
-        class: Diciplina,
-        question: Questão,
-        user: Usuário,
+        groupquestion: group_title,
+        class: Disciplina,
+        question: Questao,
+        user: Usuarios,
         matricula: Matricula,
-        coments: Comentário,
-        codigo: Código,
+        coments: Comentario,
+        codigo: Codigo,
       };
 
       this.responses.push(res);

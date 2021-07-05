@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, UpdateResult } from 'typeorm';
 
 import ICreateUserAgreement from '@modules/answer/dtos/ICreateUserAgreement';
 import IUserAgreementRepository from '@modules/answer/repositories/IUserAgreementRepository';
@@ -24,10 +24,19 @@ class UserAgreementRepository implements IUserAgreementRepository {
     return findAgreement;
   }
 
-  findByExamID(exam_id: number): Promise<UserAgreement | undefined> {
+  public async findByExamID(
+    exam_id: number,
+  ): Promise<UserAgreement | undefined> {
     const findAgreement = this.ormRepository.findOne(exam_id);
 
     return findAgreement;
+  }
+
+  public async comment(agreement_id: number, comment: string): Promise<void> {
+    const up = await this.ormRepository.query(
+      'UPDATE mlgv_quest.userAgreement SET  comment="?" WHERE id=?',
+      [comment, agreement_id],
+    );
   }
 }
 
