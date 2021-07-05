@@ -13,7 +13,7 @@ export default function ensureAuthenticated(
   response: Response,
   next: NextFunction,
 ): void {
-  // const authHeader = request.headers.authorization;
+  const authHeader = request.headers.authorization;
   // if (!authHeader) {
   //   throw new AppError('Token missing', 401);
   // }
@@ -26,7 +26,7 @@ export default function ensureAuthenticated(
   //   if (!request.user) {
   //     throw new AppError('user does not exists');
   //   }
-  //   next();
+  next();
   // } catch {
   //   throw new AppError('Invalid token', 401);
   // }
