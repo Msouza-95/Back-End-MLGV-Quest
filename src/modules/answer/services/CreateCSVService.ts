@@ -13,6 +13,7 @@ interface IResponse {
   media?: number;
   coments: string;
   codigo: number;
+  score: number;
 }
 
 interface IMediaGroup {
@@ -104,6 +105,7 @@ class CreateCSVService {
         Matricula,
         Comentario,
         Codigo,
+        score,
       } = query;
 
       const { length } = this.medias;
@@ -123,6 +125,7 @@ class CreateCSVService {
         coments: Comentario,
         codigo: Codigo,
         media: med,
+        score,
       };
 
       this.responses.push(res);

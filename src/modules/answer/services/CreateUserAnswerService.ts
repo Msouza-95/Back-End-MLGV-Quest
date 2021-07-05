@@ -51,19 +51,17 @@ class CreateUserAnswerService {
   }: IRequest): Promise<IResponse> {
     console.log(answer[0].class_id);
     const { agreement_id } = answer[0];
-    const promiseAnswer = answer.map(async wer => {
-      const agreement = await this.userAgreementRepository.findByID(
-        agreement_id,
-      );
+    const agreement = await this.userAgreementRepository.findByID(agreement_id);
 
-      if (!agreement) {
-        throw new AppError('Agrement not exists');
+    if (!agreement) {
+      throw new AppError('Agrement not exists');
+    }
+    if (agreement.user_id === user_id) {
+      if (agreement.uuid) {
+        throw new AppError('User já respondeu exam!', 402);
       }
-      if (agreement?.user_id === user_id) {
-        if (agreement?.uuid) {
-          throw new AppError('User já respondeu exam!', 402);
-        }
-      }
+    }
+    const promiseAnswer = answer.map(async wer => {
       if (!wer.isClass) {
         console.log('cartola');
         const userAnswer = await this.userAnswerRepository.create({
