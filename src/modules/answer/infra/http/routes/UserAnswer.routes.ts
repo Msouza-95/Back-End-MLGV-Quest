@@ -10,5 +10,6 @@ const userAnswerController = new UserAnswerController();
 userAnswerRoutes.use(ensureAuthenticated);
 
 userAnswerRoutes.post('/', userAnswerController.create);
+userAnswerRoutes.get('/', userAnswerController.read);
 
 export default userAnswerRoutes;
