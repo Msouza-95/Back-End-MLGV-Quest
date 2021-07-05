@@ -47,7 +47,7 @@ class CreateUserAnswerService {
 
         const userAnswerClass = await this.userAnswerClassRepository.create({
           user_answer_id: userAnswer.id,
-          class_id: 19,
+          class_id: 6,
           score: wer.score,
         });
       } else {
