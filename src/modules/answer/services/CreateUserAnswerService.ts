@@ -53,9 +53,9 @@ class CreateUserAnswerService {
     const { agreement_id } = answer[0];
     const agreement = await this.userAgreementRepository.findByID(agreement_id);
 
-    // if (!agreement) {
-    //   throw new AppError('Agrement not exists');
-    // }
+    if (!agreement) {
+      throw new AppError('Agrement not exists');
+    }
     // if (agreement.user_id === user_id) {
     //   if (agreement.uuid) {
     //     throw new AppError('User já respondeu exam!', 402);
