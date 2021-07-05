@@ -13,26 +13,21 @@ export default function ensureAuthenticated(
   response: Response,
   next: NextFunction,
 ): void {
-  const authHeader = request.headers.authorization;
-
-  if (!authHeader) {
-    throw new AppError('Token missing', 401);
-  }
-
-  const [, token] = authHeader.split(' ');
-  try {
-    const { sub: user_id } = verify(token, authConfig.jwt.secret) as IPayload;
-
-    request.user = {
-      id: user_id,
-    };
-
-    if (!request.user) {
-      throw new AppError('user does not exists');
-    }
-
-    next();
-  } catch {
-    throw new AppError('Invalid token', 401);
-  }
+  // const authHeader = request.headers.authorization;
+  // if (!authHeader) {
+  //   throw new AppError('Token missing', 401);
+  // }
+  // const [, token] = authHeader.split(' ');
+  // try {
+  //   const { sub: user_id } = verify(token, authConfig.jwt.secret) as IPayload;
+  //   request.user = {
+  //     id: user_id,
+  //   };
+  //   if (!request.user) {
+  //     throw new AppError('user does not exists');
+  //   }
+  //   next();
+  // } catch {
+  //   throw new AppError('Invalid token', 401);
+  // }
 }

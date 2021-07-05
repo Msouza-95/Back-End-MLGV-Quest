@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import IExamRepository from '@modules/exam/repositories/IExamRepository';
+import AppError from '@shared/errors/AppError';
 
 interface IResponse {
   groupquestion: string;
@@ -24,7 +25,9 @@ class CreateCSVService {
   public async execute(exam_id: number): Promise<IResponse[]> {
     console.log(exam_id);
     const examQuery = await this.examRepository.queryCSV(exam_id);
-
+    if (!examQuery) {
+      throw new AppError('não achou nada');
+    }
     const promisesQuery = examQuery.map(async query => {
       const {
         Diciplina,
