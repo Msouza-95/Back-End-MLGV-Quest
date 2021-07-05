@@ -8,58 +8,49 @@ interface IResponse {
   question: string;
   user: string;
   matricula: string;
-  media: number;
+  media?: number;
   coments: string;
   codigo: number;
 }
 
 @injectable()
 class CreateCSVService {
+  private responses: IResponse[] = [];
   constructor(
     @inject('ExamRepository')
     private examRepository: IExamRepository,
   ) {}
 
   public async execute(exam_id: number): Promise<IResponse[]> {
-    const response: IResponse[] = [];
-    const a = {
-      groupquestion: 'GROUP 1',
-      class: 'CLASS 1',
-      question: 'question 1',
-      user: 'users',
-      matricula: 'string',
-      media: 1,
-      coments: 'coment',
-      codigo: 2,
-    };
+    const examQuery = await this.examRepository.queryCSV(exam_id);
 
-    const c = {
-      groupquestion: ' GROUP 3 ',
-      class: 'CLASS 3 ',
-      question: 'question 3',
-      user: 'users 3',
-      matricula: 'string 3',
-      media: 1,
-      coments: 'coment',
-      codigo: 2,
-    };
+    const promisesQuery = examQuery.map(async query => {
+      const {
+        Diciplina,
+        Grupoquestão,
+        Questão,
+        Usuário,
+        Matricula,
+        Comentário,
+        Código,
+      } = query;
 
-    const b = {
-      groupquestion: 'GROUP 2',
-      class: 'CLASS 2',
-      question: 'question 2',
-      user: 'users 2',
-      matricula: 'string 2',
-      media: 1,
-      coments: 'coment 2',
-      codigo: 2,
-    };
+      const res = {
+        groupquestion: Grupoquestão,
+        class: Diciplina,
+        question: Questão,
+        user: Usuário,
+        matricula: Matricula,
+        coments: Comentário,
+        codigo: Código,
+      };
 
-    response.push(a);
-    response.push(b);
-    response.push(c);
+      this.responses.push(res);
+    });
 
-    return response;
+    await Promise.all(promisesQuery);
+
+    return this.responses;
   }
 }
 

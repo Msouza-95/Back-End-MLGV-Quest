@@ -18,9 +18,6 @@ class ExamController {
       period_id,
     } = request.body;
 
-    // const newStarted_at = new Date(started_at);
-    // const newEnded_at = new Date(ended_at);
-
     const createExamService = container.resolve(CreateExamService);
 
     const newExam = await createExamService.execute({

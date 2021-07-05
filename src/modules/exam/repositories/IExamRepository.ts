@@ -11,4 +11,5 @@ export default interface IExamRepository {
   index(): Promise<Exam[]>;
   delete(id: number): Promise<DeleteResult>;
   update(id: number, data: IUpdateExam): Promise<UpdateResult>;
+  queryCSV(exam_id: number): Promise<any>;
 }

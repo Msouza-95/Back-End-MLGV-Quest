@@ -34,12 +34,14 @@ class CreateUserAnswerService {
   public async execute({ answer, comment }: IResponse): Promise<void> {
     const promiseAnswer = answer.map(async wer => {
       if (!wer.isClass) {
+        console.log('cartola');
         const userAnswer = await this.userAnswerRepository.create({
           question_id: wer.question_id,
           user_agreement_id: wer.agreement_id,
           score: wer.score,
         });
       } else {
+        console.log('aqui não');
         const userAnswer = await this.userAnswerRepository.create({
           question_id: wer.question_id,
           user_agreement_id: wer.agreement_id,
@@ -55,39 +57,6 @@ class CreateUserAnswerService {
       }
     });
     await Promise.all(promiseAnswer);
-
-    // não é atrelado a disciplina apenas responder
-    // if (!isClass) {
-    //   const userAnswer = await this.userAnswerRepository.create({
-    //     question_id,
-    //     user_agreement_id,
-    //     score,
-    //   });
-
-    //   console.log(userAnswer.id);
-    //   return userAnswer;
-    // }
-
-    // // se é atrelado a disciplna
-
-    // const userAnswer = await this.userAnswerRepository.create({
-    //   question_id,
-    //   user_agreement_id,
-    // });
-    // if (!class_id) {
-    //   throw new AppError('class_id ');
-    // }
-    // const userAnswerClass = await this.userAnswerClassRepository.create({
-    //   user_answer_id: userAnswer.id,
-    //   class_id,
-    //   score,
-    // });
-
-    // criar add
-    // if (!this.id) {
-    //   const rondom = Math.floor(Math.random() * 10000000000);
-    //   this.uuid = String(rondom);
-    // }
   }
 }
 
