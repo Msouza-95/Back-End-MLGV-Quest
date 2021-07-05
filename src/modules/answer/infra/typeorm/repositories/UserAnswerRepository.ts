@@ -20,7 +20,7 @@ class UserAnswerRepository implements IUserAnswerRepository {
 
     return newUserAnswer;
   }
-  '';
+
   public async findById(id: number): Promise<UserAnswer | undefined> {
     const findAnswer = await this.ormRepository.findOne({ where: { id } });
 

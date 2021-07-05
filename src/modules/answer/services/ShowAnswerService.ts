@@ -27,7 +27,7 @@ class ShowAnswerService {
     param,
   }: IRequest): Promise<UserAnswer | UserAnswerClass> {
     if (param === 'answerClass') {
-      console.log('sdada');
+      console.log('teste');
       const answerClass = await this.userAnswerClassRepository.findAll({
         exam_id,
         user_id,
