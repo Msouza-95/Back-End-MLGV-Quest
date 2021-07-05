@@ -5,10 +5,10 @@ import CreateCSVService from '@modules/answer/services/CreateCSVService';
 
 class CSVController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { exam_id } = request.body;
+    const { exam_id } = request.params;
     const createCSVService = container.resolve(CreateCSVService);
 
-    const CSV = await createCSVService.execute(exam_id);
+    const CSV = await createCSVService.execute(Number(exam_id));
 
     return response.json(CSV);
   }
