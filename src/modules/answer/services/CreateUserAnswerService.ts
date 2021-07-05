@@ -53,14 +53,14 @@ class CreateUserAnswerService {
     const { agreement_id } = answer[0];
     const agreement = await this.userAgreementRepository.findByID(agreement_id);
 
-    if (!agreement) {
-      throw new AppError('Agrement not exists');
-    }
-    if (agreement.user_id === user_id) {
-      if (agreement.uuid) {
-        throw new AppError('User já respondeu exam!', 402);
-      }
-    }
+    // if (!agreement) {
+    //   throw new AppError('Agrement not exists');
+    // }
+    // if (agreement.user_id === user_id) {
+    //   if (agreement.uuid) {
+    //     throw new AppError('User já respondeu exam!', 402);
+    //   }
+    // }
     const promiseAnswer = answer.map(async wer => {
       if (!wer.isClass) {
         console.log('cartola');
@@ -79,6 +79,7 @@ class CreateUserAnswerService {
         const userAnswer = await this.userAnswerRepository.create({
           question_id: wer.question_id,
           user_agreement_id: wer.agreement_id,
+          score: wer.score,
         });
         if (!wer.class_id) {
           throw new AppError('class_id not existe');
