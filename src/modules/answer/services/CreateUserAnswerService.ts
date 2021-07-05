@@ -51,7 +51,6 @@ class CreateUserAnswerService {
           score: wer.score,
         });
       } else {
-        console.log('aqui não');
         const userAnswer = await this.userAnswerRepository.create({
           question_id: wer.question_id,
           user_agreement_id: wer.agreement_id,
