@@ -15,12 +15,15 @@ class UserAnswerController {
       isClass,
       class_id,
     } = request.body;
+
+    const { id } = request.user;
     console.log('bahia');
     const createUserAnswerService = container.resolve(CreateUserAnswerService);
 
     const userAnswer = await createUserAnswerService.execute({
       answer,
       comment,
+      user_id: Number(id),
     });
     /* {
       user_agreement_id: agreement_id,

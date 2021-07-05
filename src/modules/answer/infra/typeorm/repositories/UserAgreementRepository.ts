@@ -35,7 +35,7 @@ class UserAgreementRepository implements IUserAgreementRepository {
   public async comment(
     agreement_id: number,
     comment: string,
-    uuid: number,
+    uuid: string,
   ): Promise<void> {
     const up = await this.ormRepository.query(
       'UPDATE mlgv_quest.userAgreement SET  comment=?, uuid=? WHERE id=?',
