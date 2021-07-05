@@ -22,6 +22,7 @@ class CreateCSVService {
   ) {}
 
   public async execute(exam_id: number): Promise<IResponse[]> {
+    console.log(exam_id);
     const examQuery = await this.examRepository.queryCSV(exam_id);
 
     const promisesQuery = examQuery.map(async query => {

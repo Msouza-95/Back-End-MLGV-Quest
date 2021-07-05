@@ -8,6 +8,7 @@ class CSVController {
     const { exam_id } = request.params;
     const createCSVService = container.resolve(CreateCSVService);
 
+    console.log(exam_id);
     const CSV = await createCSVService.execute(Number(exam_id));
 
     return response.json(CSV);

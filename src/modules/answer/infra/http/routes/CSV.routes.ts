@@ -9,6 +9,6 @@ const csvController = new CSVController();
 
 csvRoutes.use(ensureAuthenticated);
 
-csvRoutes.get('/:id_exam', csvController.create);
+csvRoutes.get('/:exam_id', csvController.create);
 
 export default csvRoutes;
